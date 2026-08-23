@@ -1,11 +1,9 @@
-# Mobile Navigation Interaction Checklist
+# Logo Enhancement Checklist
 
-- [x] Add outside-tap dismissal for the open mobile menu.
-- [x] Add Escape-key dismissal for the open mobile menu.
-- [x] Track the visible page section for mobile navigation state.
-- [x] Add a clear active-section indicator to relevant mobile links.
-- [x] Add a subtle backdrop blur while the menu is open.
-- [x] Preserve touch targets, focus behavior, and reduced-motion support.
-- [x] Verify mobile interactions and desktop preservation.
+- [x] Review the existing mark and header logo treatment.
+- [x] Make the logo mark more visual and prominent on desktop.
+- [x] Make the logo remain clear and balanced on mobile.
+- [x] Preserve the accessible home link and decorative-image semantics.
+- [x] Verify header spacing, theme contrast, and responsive behavior.
 - [x] Run TypeScript and production build checks.
-- [x] Save and deliver the updated mobile navigation checkpoint.
+- [x] Save and deliver the updated portfolio checkpoint.

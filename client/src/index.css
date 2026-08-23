@@ -459,3 +459,12 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 }
 @keyframes mobile-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .mobile-nav-backdrop, .site-shell main { animation: none; transition: none; } }
+
+/* Brand mark refinement: a compact editorial badge makes the existing symbol read as a visual identity anchor. */
+.brand-badge { position: relative; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--blue); background: color-mix(in srgb, var(--blue) 6%, var(--ivory)); transition: background 180ms var(--ease-out), transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+.brand-badge::before { content: ""; position: absolute; inset: 5px; border: 1px solid color-mix(in srgb, var(--blue) 38%, transparent); pointer-events: none; }
+.brand-mark { position: relative; z-index: 1; width: 29px; height: 29px; object-fit: contain; }
+.brand:hover .brand-badge { background: color-mix(in srgb, var(--blue) 13%, var(--ivory)); transform: translateY(-1px); box-shadow: 3px 3px 0 color-mix(in srgb, var(--blue) 25%, transparent); }
+.brand:active .brand-badge { transform: scale(.97); }
+@media (max-width: 800px) { .brand-badge { width: 40px; height: 40px; } .brand-mark { width: 28px; height: 28px; } .brand { gap: 9px; } }
+@media (prefers-reduced-motion: reduce) { .brand-badge { transition: none; } }

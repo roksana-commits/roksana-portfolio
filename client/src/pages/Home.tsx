@@ -166,7 +166,7 @@ export default function Home() {
       <aside className="editorial-rail" aria-label="Portfolio index"><span>ROKSANA / 01—05</span><span>DATA INTELLIGENCE</span></aside>
       <header className="topbar">
         <a href="#top" className="brand" aria-label="Roksana home" onClick={(event) => handleNavClick(event, "top")}>
-          <img src={mark} alt="" className="brand-mark" />
+          <span className="brand-badge"><img src={mark} alt="" className="brand-mark" /></span>
           <span>ROKSANA</span>
         </a>
         <button className="menu-button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
