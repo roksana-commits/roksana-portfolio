@@ -163,10 +163,10 @@ export default function Home() {
 
   return (
     <div className={`site-shell ${menuOpen ? "menu-is-open" : ""}`}>
-      <aside className="editorial-rail" aria-label="Portfolio index"><span>ROKSANA / 01—05</span><span>DATA INTELLIGENCE</span></aside>
+      <aside className="editorial-rail" aria-label="Portfolio index"><span className="rail-mark">R</span><span className="rail-rule" /><span className="rail-meta">ROKSANA / 01—05</span><span className="rail-meta">DATA INTELLIGENCE</span><span className="rail-meta">CASE FILE / 2026</span></aside>
       <header className="topbar">
         <a href="#top" className="brand" aria-label="Roksana home" onClick={(event) => handleNavClick(event, "top")}>
-          <span className="brand-badge"><img src={mark} alt="" className="brand-mark" /></span>
+          <span className={`brand-badge ${menuOpen ? "mobile-logo-active" : ""}`}><img src={mark} alt="" className="brand-mark" /></span>
           <span>ROKSANA</span>
         </a>
         <button className="menu-button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>

@@ -467,4 +467,41 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .brand:hover .brand-badge { background: color-mix(in srgb, var(--blue) 13%, var(--ivory)); transform: translateY(-1px); box-shadow: 3px 3px 0 color-mix(in srgb, var(--blue) 25%, transparent); }
 .brand:active .brand-badge { transform: scale(.97); }
 @media (max-width: 800px) { .brand-badge { width: 40px; height: 40px; } .brand-mark { width: 28px; height: 28px; } .brand { gap: 9px; } }
-@media (prefers-reduced-motion: reduce) { .brand-badge { transition: none; } }
+/* Signal & Structure motion cue: the badge breathes gently while the mobile menu is open, keeping the identity visible without competing with navigation. */
+@media (max-width: 800px) and (prefers-reduced-motion: no-preference) {
+  .brand-badge.mobile-logo-active { animation: mobile-logo-pulse 1800ms ease-in-out infinite; }
+}
+@keyframes mobile-logo-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.035) rotate(1deg); }
+}
+@media (prefers-reduced-motion: reduce) { .brand-badge { transition: none; animation: none; } }
+
+/* Signal & Structure system refinement: persistent case-file rail, bracketed R motif, and evidence-led records. */
+.editorial-rail { position: fixed; left: 0; top: 0; bottom: 0; z-index: 8; width: 42px; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 23px 0 18px; border-right: 1px solid var(--border); background: color-mix(in srgb, var(--ivory) 92%, transparent); color: var(--ink-soft); }
+.rail-mark { position: relative; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--blue); color: var(--blue); font: 700 12px/1 "Space Grotesk", sans-serif; }
+.rail-mark::before, .rail-mark::after { content: ""; position: absolute; width: 6px; height: 6px; border-color: var(--blue); }
+.rail-mark::before { top: -4px; left: -4px; border-top: 1px solid; border-left: 1px solid; }
+.rail-mark::after { right: -4px; bottom: -4px; border-right: 1px solid; border-bottom: 1px solid; }
+.rail-rule { width: 1px; height: 48px; background: var(--blue); opacity: .75; }
+.rail-meta { writing-mode: vertical-rl; transform: rotate(180deg); font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; white-space: nowrap; }
+.rail-meta:last-child { margin-top: auto; color: var(--blue); }
+.about-rail { background: color-mix(in srgb, var(--ivory-2) 92%, transparent); }
+.brand-badge::after { content: ""; position: absolute; width: 7px; height: 7px; right: -4px; top: -4px; border-top: 1px solid var(--terracotta); border-right: 1px solid var(--terracotta); pointer-events: none; }
+.portrait-frame::before, .about-hero-visual::before { content: "R / SIGNAL"; position: absolute; top: -12px; right: 10px; color: var(--blue); font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; }
+.client-card, .social-connect-card { position: relative; overflow: hidden; }
+.client-card::before, .social-connect-card::before { content: ""; position: absolute; left: 0; top: 16px; width: 18px; height: 1px; background: var(--blue); box-shadow: 6px 4px 0 color-mix(in srgb, var(--blue) 55%, transparent), 12px 8px 0 color-mix(in srgb, var(--blue) 25%, transparent); }
+.client-card-top, .social-connect-card > span:first-child { position: relative; z-index: 1; }
+.client-card small::before { content: "↗"; color: var(--blue); margin-right: 5px; }
+.service-row, .about-service, .about-role { position: relative; }
+.service-row::after, .about-service::after, .about-role::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 34px; height: 2px; background: color-mix(in srgb, var(--blue) 68%, transparent); transform-origin: left; transition: transform 180ms var(--ease-out); }
+.service-row:hover::after, .about-service:hover::after, .about-role:hover::after { transform: scaleX(1.8); }
+@media (max-width: 800px) {
+  .editorial-rail { display: none; }
+  .portrait-frame::before, .about-hero-visual::before { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-row::after, .about-service::after, .about-role::after { transition: none; }
+}
+.dark .editorial-rail { background: color-mix(in srgb, var(--ink) 94%, transparent); }
+.dark .about-rail { background: color-mix(in srgb, var(--ink-2) 94%, transparent); }
