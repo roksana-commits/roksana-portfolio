@@ -158,3 +158,31 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .form-submit { justify-self: start; margin-top: 3px; }
 .form-status { min-height: 18px; margin: 0; color: #dce3ff; font-size: 12px; line-height: 1.4; }
 @media (max-width: 800px) { .contact-inner { grid-template-columns: 1fr; gap: 50px; } .contact-form { border-left: 0; border-top: 1px solid rgba(255,255,255,.38); padding: 34px 0 0; } }
+
+/* Dark mode enhancement: preserve the Signal & Structure hierarchy with ink-black surfaces,
+   warm type, electric blue proof marks, and enough contrast for form fields. */
+.dark { --background: #111216; --foreground: #f5f2eb; --card: #1d2026; --card-foreground: #f5f2eb; --ivory: #111216; --ink: #f5f2eb; --muted-ink: #adb1bb; --border: #343842; --terracotta: #e38c6f; }
+.dark body { background: var(--ivory); color: var(--ink); }
+.dark .topbar { border-color: var(--border); }
+.dark .menu-button, .dark .brand { color: var(--ink); }
+.dark .nav-links { background: var(--ivory); }
+.dark .hero-texture { mix-blend-mode: screen; opacity: .48; }
+.dark .proof-band { background: #090a0c; color: #f5f2eb; }
+.dark .signal-section { background: #1d2026; }
+.dark .signal-image img { mix-blend-mode: screen; opacity: .78; }
+.dark .skill-track { background: #414650; }
+.dark .service-row:hover { background: linear-gradient(90deg, rgba(45,91,255,.18), transparent 72%); }
+.dark .about-section { background: var(--ivory); }
+.dark .contact-form input, .dark .contact-form select, .dark .contact-form textarea { background: rgba(0,0,0,.18); }
+.dark .contact-form input:focus, .dark .contact-form select:focus, .dark .contact-form textarea:focus { background: rgba(0,0,0,.28); }
+
+.theme-toggle { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--ink); min-height: 30px; padding: 0 10px 0 6px; font: 600 11px/1 "DM Sans", sans-serif; transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out), color 180ms var(--ease-out), transform 160ms var(--ease-out); }
+.theme-toggle:hover { background: var(--blue); border-color: var(--blue); color: white; transform: translateY(-1px); }
+.theme-toggle:active { transform: scale(.97); }
+.theme-toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); color: white; }
+.theme-toggle:hover .theme-toggle-icon { background: rgba(255,255,255,.22); }
+.button:disabled { opacity: .65; cursor: wait; transform: none; }
+.form-status.success { color: #bff0cf; }
+.form-status.error { color: #ffd1c4; }
+
+@media (max-width: 800px) { .nav-links .theme-toggle { margin-top: 2px; } }

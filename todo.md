@@ -9,3 +9,9 @@
 - [x] Add subtle hover animations to the skill index rows and progress tracks.
 - [x] Verify desktop and mobile layouts after the enhancement.
 - [x] Save and deliver an updated project checkpoint.
+- [x] Add a dark mode toggle switch to the navigation bar.
+- [x] Persist the selected theme between page visits.
+- [x] Replace the mailto workflow with Formspree submission using https://formspree.io/f/meajdyya.
+- [x] Add submitting, success, and error states for the Formspree form.
+- [x] Verify light mode, dark mode, responsive layout, and form states.
+- [x] Save and deliver the new project checkpoint.
