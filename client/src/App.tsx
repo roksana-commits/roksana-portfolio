@@ -11,11 +11,13 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import CookieConsent from "./components/CookieConsent";
 import Home from "./pages/Home";
 import Legal from "./pages/Legal";
+import About from "./pages/About";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
       <Route path="/privacy"><Legal type="privacy" /></Route>
       <Route path="/terms"><Legal type="terms" /></Route>
       <Route path="/cookies"><Legal type="cookies" /></Route>

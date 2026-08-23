@@ -156,7 +156,7 @@ export default function Home() {
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">
           <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
           <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
-          <a href="#about" onClick={(event) => handleNavClick(event, "about")}>About</a>
+          <a href="/about">About</a>
           <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink><SocialLink href={facebookUrl} label="Roksana on Facebook"><Facebook size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
           <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
