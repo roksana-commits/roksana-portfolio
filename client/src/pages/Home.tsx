@@ -81,6 +81,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -96,6 +97,23 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   useEffect(() => {
+    if (!menuOpen) return;
+    const handleMenuEscape = (event: KeyboardEvent) => { if (event.key === "Escape") closeMenu(); };
+    window.addEventListener("keydown", handleMenuEscape);
+    return () => window.removeEventListener("keydown", handleMenuEscape);
+  }, [menuOpen]);
+  useEffect(() => {
+    const sectionIds = ["capabilities", "proof", "about", "contact"];
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
+    if (!sections.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActiveSection(visible[0].target.id);
+    }, { rootMargin: "-20% 0px -62% 0px", threshold: [0.1, 0.25, 0.5, 0.75] });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
     if (!successOpen) return;
     const handleEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setSuccessOpen(false); };
     window.addEventListener("keydown", handleEscape);
@@ -104,6 +122,7 @@ export default function Home() {
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault();
     closeMenu();
+    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const handleShare = async () => {
@@ -143,7 +162,7 @@ export default function Home() {
   };
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell ${menuOpen ? "menu-is-open" : ""}`}>
       <aside className="editorial-rail" aria-label="Portfolio index"><span>ROKSANA / 01—05</span><span>DATA INTELLIGENCE</span></aside>
       <header className="topbar">
         <a href="#top" className="brand" aria-label="Roksana home" onClick={(event) => handleNavClick(event, "top")}>
@@ -154,12 +173,13 @@ export default function Home() {
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">
-          <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
-          <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
-          <a href="/about">About</a>
+          <a className={activeSection === "capabilities" ? "is-active" : ""} aria-current={activeSection === "capabilities" ? "location" : undefined} href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
+          <a className={activeSection === "proof" ? "is-active" : ""} aria-current={activeSection === "proof" ? "location" : undefined} href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
+          <a className={activeSection === "about" ? "is-active" : ""} aria-current={activeSection === "about" ? "location" : undefined} href="/about">About</a>
           <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink><SocialLink href={facebookUrl} label="Roksana on Facebook"><Facebook size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
-          <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
+          <a className={`nav-cta ${activeSection === "contact" ? "is-active" : ""}`} aria-current={activeSection === "contact" ? "location" : undefined} href="#contact" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
+        {menuOpen && <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMenu} />}
       </header>
 
       <main id="top">

@@ -1,9 +1,11 @@
-# Mobile Navigation Enhancement Checklist
+# Mobile Navigation Interaction Checklist
 
-- [x] Review mobile menu markup and current responsive behavior.
-- [x] Add smooth slide-in and closing transitions for the mobile menu.
-- [x] Optimize navigation links, social icons, theme toggle, and CTA touch targets.
-- [x] Preserve keyboard focus, visible focus rings, and reduced-motion behavior.
-- [x] Verify mobile navigation at phone widths and confirm desktop behavior remains unchanged.
+- [x] Add outside-tap dismissal for the open mobile menu.
+- [x] Add Escape-key dismissal for the open mobile menu.
+- [x] Track the visible page section for mobile navigation state.
+- [x] Add a clear active-section indicator to relevant mobile links.
+- [x] Add a subtle backdrop blur while the menu is open.
+- [x] Preserve touch targets, focus behavior, and reduced-motion support.
+- [x] Verify mobile interactions and desktop preservation.
 - [x] Run TypeScript and production build checks.
-- [x] Save and deliver the updated portfolio checkpoint.
+- [x] Save and deliver the updated mobile navigation checkpoint.

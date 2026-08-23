@@ -446,3 +446,16 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 @media (prefers-reduced-motion: reduce) {
   .menu-button, .nav-links, .nav-links > a { transition: none; }
 }
+
+/* Mobile navigation interaction layer: dismissible backdrop, active section cue, and restrained background blur. */
+@media (max-width: 800px) {
+  .mobile-nav-backdrop { position: fixed; inset: 72px 0 0; z-index: 4; border: 0; background: rgba(23,24,23,.18); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: mobile-backdrop-in 220ms var(--ease-out) both; }
+  .nav-links { z-index: 6; }
+  .menu-button { position: relative; z-index: 7; }
+  .nav-links > a.is-active { color: var(--blue); background: color-mix(in srgb, var(--blue) 8%, transparent); border-left-color: var(--blue); }
+  .nav-links > a:not(.nav-cta).is-active::after { content: "CURRENT"; margin-left: auto; color: var(--blue); font: 500 9px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; }
+  .site-shell main { transition: filter 240ms var(--ease-out); }
+  .site-shell.menu-is-open main { filter: blur(3px); }
+}
+@keyframes mobile-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .mobile-nav-backdrop, .site-shell main { animation: none; transition: none; } }
