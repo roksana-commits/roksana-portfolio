@@ -428,3 +428,21 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .social-connect-card small { margin-top: 0; line-height: 1.35; }
 .social-connect-card > svg { align-self: center; justify-self: end; }
 @media (max-width: 760px) { .social-connect-grid { grid-auto-rows: auto; } .social-connect-card { min-height: 108px; height: auto; } }
+
+/* Mobile navigation refinement: the menu opens like a lightweight panel and every primary control gets a comfortable touch area. */
+@media (max-width: 800px) {
+  .menu-button { display: inline-grid; place-items: center; width: 44px; height: 44px; margin-right: -8px; border: 1px solid transparent; border-radius: 2px; transition: color 180ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 160ms var(--ease-out); }
+  .menu-button:hover { color: var(--blue); background: color-mix(in srgb, var(--blue) 8%, transparent); border-color: var(--border); }
+  .menu-button:active { transform: scale(.96); }
+  .nav-links { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(-12px); transform-origin: top center; transition: opacity 220ms var(--ease-out), transform 260ms var(--ease-out), visibility 0s linear 260ms; }
+  .nav-links.is-open { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+  .nav-links > a { display: flex; align-items: center; width: 100%; min-height: 48px; padding: 10px 12px; border-left: 2px solid transparent; transition: color 180ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out), padding-left 180ms var(--ease-out); }
+  .nav-links > a:hover, .nav-links > a:focus-visible { padding-left: 17px; color: var(--blue); background: color-mix(in srgb, var(--blue) 7%, transparent); border-left-color: var(--blue); }
+  .nav-links .nav-socials { min-height: 48px; padding: 2px 12px; gap: 10px; }
+  .nav-links .nav-socials a { width: 44px; height: 44px; }
+  .nav-links .theme-toggle { min-height: 48px; margin-top: 0; margin-left: 12px; padding: 0 13px 0 8px; }
+  .nav-links .nav-cta { width: auto; min-height: 48px; padding: 10px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-button, .nav-links, .nav-links > a { transition: none; }
+}
