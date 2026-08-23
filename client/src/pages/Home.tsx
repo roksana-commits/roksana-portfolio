@@ -183,6 +183,7 @@ export default function Home() {
 
       {successOpen && <div className="success-modal-backdrop" role="presentation" onClick={() => setSuccessOpen(false)}><div className="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title" onClick={(event) => event.stopPropagation()}><div className="success-modal-mark"><Check size={24} /></div><span className="mono">FORM RECEIVED / 200</span><h2 id="success-title">Message received.</h2><p>Thank you for reaching out. Your note is safely on its way, and Roksana will be in touch soon.</p><button className="button button-primary" type="button" onClick={() => setSuccessOpen(false)}>Close <X size={16} /></button></div></div>}
 
+
       <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Technical SEO / Data Intelligence / Web Scraping</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="legal-footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a></span><span className="mono">© 2026</span></div></footer>
     </div>
   );
