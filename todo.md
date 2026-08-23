@@ -1,9 +1,8 @@
-# Social Connect Card Alignment Checklist
+# LHIM Label and Responsive Review Checklist
 
-- [x] Review the social-connect card markup and current layout rules.
-- [x] Align icons, titles, descriptions, and arrows consistently across all cards.
-- [x] Prevent long Lighthouse Internet Media text from disturbing the grid.
-- [x] Preserve accessible labels, tooltips, and hover states.
-- [x] Verify desktop and mobile alignment.
+- [x] Change the social-connect card label from Lighthouse Internet Media to LHIM.
+- [x] Preserve full Lighthouse Internet Media wording where context and accessibility require it.
+- [x] Review desktop navigation, hero, contact, social cards, and footer.
+- [x] Review mobile navigation, contact form, social cards, and footer.
 - [x] Run TypeScript and production build checks.
-- [x] Save and deliver the updated portfolio checkpoint.
+- [x] Save and deliver the reviewed portfolio checkpoint.
