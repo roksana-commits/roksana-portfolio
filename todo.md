@@ -1,13 +1,12 @@
 # Roksana Portfolio Enhancement Checklist
 
-- [x] Add a functional contact form at the bottom of the page.
-- [x] Route contact submissions through Formspree using the supplied endpoint.
-- [x] Add validation and submitting, success, and error states.
-- [x] Add persistent dark mode and update the provided email links.
-- [x] Improve smooth scrolling and hover interactions.
-- [x] Add a concise privacy notice below the contact form.
-- [x] Add a scroll-triggered Back to Top button.
-- [x] Add a custom success confirmation modal after Formspree submission.
-- [x] Initialize and write a reusable portfolio workflow skill.
-- [x] Validate the website and reusable skill.
-- [x] Save and deliver the updated website checkpoint and skill.
+- [x] Add a functional Formspree contact form with validation and feedback.
+- [x] Add persistent dark mode, smooth navigation, hover interactions, privacy notice, Back to Top, and success modal.
+- [x] Create and validate the reusable editorial portfolio-builder skill.
+- [x] Add informational draft Privacy Policy page for Bangladesh context.
+- [x] Add informational draft Terms of Use page.
+- [x] Add informational draft Cookie and Analytics Notice page.
+- [x] Add informational draft Disclaimer page.
+- [x] Link legal pages from the footer and ensure dark mode styling is consistent.
+- [x] Verify legal-page routes, responsive layout, and accessibility.
+- [x] Save and deliver the updated website checkpoint.

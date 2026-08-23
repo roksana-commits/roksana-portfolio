@@ -9,11 +9,16 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Legal from "./pages/Legal";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/privacy"><Legal type="privacy" /></Route>
+      <Route path="/terms"><Legal type="terms" /></Route>
+      <Route path="/cookies"><Legal type="cookies" /></Route>
+      <Route path="/disclaimer"><Legal type="disclaimer" /></Route>
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
