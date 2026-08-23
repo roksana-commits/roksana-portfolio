@@ -15,7 +15,7 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent, type MouseEvent } from "react";
 
 const portrait = "/manus-storage/roksana-portrait_eea47550.png";
 const heroTexture = "/manus-storage/roksana-signal-hero_195fe05d.png";
@@ -49,13 +49,31 @@ function SectionLabel({ number, children }: { number: string; children: string }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "", recipient: "roksana@lighthouseinternetmedia.com" });
+  const [formStatus, setFormStatus] = useState("");
   const closeMenu = () => setMenuOpen(false);
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    closeMenu();
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setFormStatus("Please complete your name, email, and message.");
+      return;
+    }
+    const subject = encodeURIComponent(`Portfolio enquiry from ${form.name.trim()}`);
+    const body = encodeURIComponent(`Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\n\n${form.message.trim()}`);
+    window.location.href = `mailto:${form.recipient}?subject=${subject}&body=${body}`;
+    setFormStatus("Your email draft is ready — please send it from your email app.");
+  };
 
   return (
     <div className="site-shell">
       <aside className="editorial-rail" aria-label="Portfolio index"><span>ROKSANA / 01—05</span><span>DATA INTELLIGENCE</span></aside>
       <header className="topbar">
-        <a href="#top" className="brand" aria-label="Roksana home" onClick={closeMenu}>
+        <a href="#top" className="brand" aria-label="Roksana home" onClick={(event) => handleNavClick(event, "top")}>
           <img src={mark} alt="" className="brand-mark" />
           <span>ROKSANA</span>
         </a>
@@ -63,10 +81,10 @@ export default function Home() {
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">
-          <a href="#capabilities" onClick={closeMenu}>Capabilities</a>
-          <a href="#proof" onClick={closeMenu}>Proof</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#contact" className="nav-cta" onClick={closeMenu}>Let’s work <ArrowUpRight size={15} /></a>
+          <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
+          <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
+          <a href="#about" onClick={(event) => handleNavClick(event, "about")}>About</a>
+          <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
       </header>
 
@@ -78,7 +96,7 @@ export default function Home() {
             <p className="hero-intro">I’m Roksana — a technical SEO, data intelligence, and web scraping specialist who turns scattered information into dependable next steps.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">View my profile <ArrowUpRight size={17} /></a>
-              <a className="text-link" href="#capabilities">See how I help <ChevronDown size={16} /></a>
+              <a className="text-link" href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>See how I help <ChevronDown size={16} /></a>
             </div>
           </div>
           <div className="hero-visual">
@@ -120,10 +138,10 @@ export default function Home() {
           <div className="about-copy"><h2>Good work starts<br />with a <em>clear brief.</em></h2><p>Whether you need a research partner, a careful operator, or someone to make sense of a large set of web data, I bring a practical mindset and a steady eye for what matters.</p><div className="check-list"><span><Check size={15} /> Clear communication</span><span><Check size={15} /> Detail-aware delivery</span><span><Check size={15} /> Independent momentum</span></div></div>
         </section>
 
-        <section className="contact-section" id="contact"><div className="contact-mark">R</div><div className="section-wrap contact-inner"><SectionLabel number="05" children="Start a conversation" /><h2>Bring me<br /><em>the messy part.</em></h2><p>Tell me what you’re trying to understand, organize, or improve. I’ll meet you where the problem is.</p><a className="button button-dark" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Open Freelancer profile <ArrowUpRight size={17} /></a></div></section>
+        <section className="contact-section" id="contact"><div className="contact-mark">R</div><div className="section-wrap contact-inner"><div className="contact-intro"><SectionLabel number="05" children="Start a conversation" /><h2>Bring me<br /><em>the messy part.</em></h2><p>Tell me what you’re trying to understand, organize, or improve. I’ll meet you where the problem is.</p><a className="button button-dark" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Open Freelancer profile <ArrowUpRight size={17} /></a></div><form className="contact-form" onSubmit={handleSubmit} noValidate><div className="form-heading"><span className="mono">DIRECT LINE</span><span className="form-rule" /></div><label htmlFor="contact-name">Name<input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label><label htmlFor="contact-email">Email<input id="contact-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label><label htmlFor="contact-recipient">Send to<select id="contact-recipient" name="recipient" value={form.recipient} onChange={(event) => setForm({ ...form, recipient: event.target.value })}><option value="roksana@lighthouseinternetmedia.com">roksana@lighthouseinternetmedia.com</option><option value="roksana.ripa.1993@gmail.com">roksana.ripa.1993@gmail.com</option></select></label><label htmlFor="contact-message">What can I help with?<textarea id="contact-message" name="message" rows={4} placeholder="A few lines about the project..." value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} /></label><button className="button button-dark form-submit" type="submit">Prepare email <ArrowUpRight size={17} /></button><p className="form-status" aria-live="polite">{formStatus}</p></form></div></section>
       </main>
 
-      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Technical SEO / Data Intelligence / Web Scraping</span></div><div className="footer-right"><a href="mailto:roksana@example.com"><Mail size={15} /> Email</a><span className="mono">© 2026</span></div></footer>
+      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Technical SEO / Data Intelligence / Web Scraping</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="mono">© 2026</span></div></footer>
     </div>
   );
 }

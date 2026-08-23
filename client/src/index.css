@@ -81,7 +81,10 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .section-heading p { color: var(--muted-ink); line-height: 1.7; max-width: 310px; margin-top: 28px; }
 .service-list { border-top: 1px solid var(--border); }
 .service-row { display: grid; grid-template-columns: 38px 32px 1fr 22px; gap: 15px; align-items: start; padding: 25px 0; border-bottom: 1px solid var(--border); transition: transform 180ms var(--ease-out), color 180ms var(--ease-out); }
-.service-row:hover { transform: translateX(8px); color: var(--blue); }
+.service-row:hover { transform: translateX(8px); color: var(--blue); background: linear-gradient(90deg, rgba(45,91,255,.06), transparent 72%); }
+.service-row:hover h3 { color: var(--blue); }
+.service-row:hover .service-number { transform: translateX(3px); }
+.service-number { transition: transform 180ms var(--ease-out); }
 .service-number { color: var(--terracotta); font: 500 11px "IBM Plex Mono", monospace; padding-top: 3px; }
 .service-row h3 { margin: 0 0 7px; font: 600 20px/1.1 "Space Grotesk", sans-serif; letter-spacing: -.03em; color: var(--ink); }
 .service-row p { margin: 0; max-width: 420px; color: var(--muted-ink); font-size: 13px; line-height: 1.55; }
@@ -99,7 +102,11 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .skill-top { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 12px; font-weight: 600; }
 .skill-top .mono { color: var(--muted-ink); font-size: 9px; }
 .skill-track { height: 4px; background: #d0cbc0; }
-.skill-track span { display: block; height: 100%; background: var(--blue); }
+.skill-track span { display: block; height: 100%; background: var(--blue); transition: transform 220ms var(--ease-out), filter 220ms var(--ease-out); transform-origin: left; }
+.skill-item { padding: 5px 8px 8px; margin-left: -8px; margin-right: -8px; transition: background 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.skill-item:hover { background: rgba(45,91,255,.07); transform: translateX(5px); }
+.skill-item:hover .skill-track span { filter: saturate(1.25); transform: scaleY(1.45); }
+.skill-item:hover .skill-top > span:first-child { color: var(--blue); }
 
 .about-section { display: grid; grid-template-columns: .5fr 1.5fr; gap: 100px; padding-top: 126px; padding-bottom: 133px; }
 .about-aside { display: flex; flex-direction: column; justify-content: space-between; }
@@ -113,7 +120,7 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .check-list svg { color: var(--blue); }
 
 .contact-section { position: relative; background: var(--blue); color: white; overflow: hidden; }
-.contact-inner { padding-top: 90px; padding-bottom: 95px; position: relative; z-index: 1; }
+.contact-inner { padding-top: 90px; padding-bottom: 95px; position: relative; z-index: 1; display: grid; grid-template-columns: .9fr 1.1fr; gap: 75px; align-items: start; }\n.contact-intro { min-width: 0; }\n.contact-form { border-left: 1px solid rgba(255,255,255,.38); padding-left: 36px; display: grid; gap: 15px; }\n.contact-form label { display: grid; gap: 7px; color: #dce3ff; font: 500 10px/1.2 \"IBM Plex Mono\", monospace; letter-spacing: .07em; text-transform: uppercase; }\n.contact-form input, .contact-form select, .contact-form textarea { width: 100%; border: 1px solid rgba(255,255,255,.48); border-radius: 0; background: rgba(255,255,255,.1); color: white; padding: 12px 13px; font: 400 14px/1.4 \"DM Sans\", sans-serif; transition: border-color 180ms var(--ease-out), background 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }\n.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,.66); }\n.contact-form select option { color: var(--ink); }\n.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: white; background: rgba(255,255,255,.16); box-shadow: 0 0 0 3px rgba(255,255,255,.12); }\n.contact-form textarea { resize: vertical; min-height: 112px; }\n.form-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 3px; color: white; }\n.form-rule { height: 1px; flex: 1; background: rgba(255,255,255,.35); }\n.form-submit { justify-self: start; margin-top: 3px; }\n.form-status { min-height: 18px; margin: 0; color: #dce3ff; font-size: 12px; line-height: 1.4; }
 .contact-inner .section-label { color: white; }
 .contact-inner .section-label span:first-child { border-color: white; }
 .contact-inner h2 { font-size: clamp(59px, 9vw, 126px); line-height: .86; margin: 35px 0 25px; }
@@ -132,6 +139,22 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 800px) { .editorial-rail { display: none; } .section-wrap, .topbar { width: min(100% - 40px, 600px); } .topbar { height: 72px; } .menu-button { display: block; } .nav-links { display: none; position: absolute; left: 0; right: 0; top: 71px; padding: 18px 0 24px; flex-direction: column; align-items: flex-start; gap: 18px; background: var(--ivory); border-bottom: 1px solid var(--border); } .nav-links.is-open { display: flex; } .hero { grid-template-columns: 1fr; padding: 66px 0 80px; } .hero-copy { padding-left: 22px; } .hero-visual { min-height: 440px; } .portrait-frame { right: 9%; width: 60%; } .hero-texture { inset: 10% -30% auto 0; width: 130%; } .proof-inner { grid-template-columns: repeat(2, 1fr); gap: 26px 18px; } .proof-intro { grid-column: 1 / -1; } .capabilities, .signal-grid, .about-section { grid-template-columns: 1fr; gap: 48px; padding-top: 83px; padding-bottom: 85px; } .signal-image { min-height: 390px; } .signal-image img { width: 80%; } .about-aside { display: block; } .vertical-note { writing-mode: initial; transform: none; margin: 25px 0 0; } .footer { align-items: flex-start; gap: 25px; flex-direction: column; } }
-@media (max-width: 480px) { .section-wrap, .topbar { width: calc(100% - 32px); } .hero h1 { font-size: 49px; } .hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; } .hero-visual { min-height: 360px; } .portrait-frame { width: 67%; } .hero-stamp { left: 0; bottom: 2%; } .proof-inner { padding: 28px 0; } .metric strong { font-size: 36px; } .service-row { grid-template-columns: 27px 25px 1fr; gap: 10px; } .service-arrow { display: none; } .contact-inner { padding: 75px 0 80px; } .contact-inner h2 { font-size: 66px; } .footer-right { width: 100%; justify-content: space-between; } }
+@media (max-width: 480px) { .section-wrap, .topbar { width: calc(100% - 32px); } .hero h1 { font-size: 49px; } .hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; } .hero-visual { min-height: 360px; } .portrait-frame { width: 67%; } .hero-stamp { left: 0; bottom: 2%; } .proof-inner { padding: 28px 0; } .metric strong { font-size: 36px; } .service-row { grid-template-columns: 27px 25px 1fr; gap: 10px; } .service-arrow { display: none; } .contact-inner { padding: 75px 0 80px; grid-template-columns: 1fr; gap: 50px; } .contact-form { border-left: 0; border-top: 1px solid rgba(255,255,255,.38); padding: 34px 0 0; } .contact-inner h2 { font-size: 66px; } .footer-right { width: 100%; justify-content: space-between; } }
 
 @layer base { * { @apply border-border outline-ring/50; } }
+
+/* Enhancement pass: direct-line form and responsive field treatment. */
+.contact-inner { display: grid; grid-template-columns: .9fr 1.1fr; gap: 75px; align-items: start; }
+.contact-intro { min-width: 0; }
+.contact-form { border-left: 1px solid rgba(255,255,255,.38); padding-left: 36px; display: grid; gap: 15px; }
+.contact-form label { display: grid; gap: 7px; color: #dce3ff; font: 500 10px/1.2 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; border: 1px solid rgba(255,255,255,.48); border-radius: 0; background: rgba(255,255,255,.1); color: white; padding: 12px 13px; font: 400 14px/1.4 "DM Sans", sans-serif; transition: border-color 180ms var(--ease-out), background 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,.66); }
+.contact-form select option { color: var(--ink); }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: white; background: rgba(255,255,255,.16); box-shadow: 0 0 0 3px rgba(255,255,255,.12); }
+.contact-form textarea { resize: vertical; min-height: 112px; }
+.form-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 3px; color: white; }
+.form-rule { height: 1px; flex: 1; background: rgba(255,255,255,.35); }
+.form-submit { justify-self: start; margin-top: 3px; }
+.form-status { min-height: 18px; margin: 0; color: #dce3ff; font-size: 12px; line-height: 1.4; }
+@media (max-width: 800px) { .contact-inner { grid-template-columns: 1fr; gap: 50px; } .contact-form { border-left: 0; border-top: 1px solid rgba(255,255,255,.38); padding: 34px 0 0; } }
