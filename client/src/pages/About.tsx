@@ -3,7 +3,8 @@
  * evidence-led, and structured like a professional case file. Use warm ivory, ink,
  * Roksana Blue, mono annotations, and short purposeful interactions.
  */
-import { ArrowLeft, ArrowUpRight, Check, Database, FileSpreadsheet, Globe2, Instagram, Linkedin, Search, Facebook } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, ChevronUp, Database, FileSpreadsheet, Globe2, Instagram, Linkedin, Search, Facebook, Share2 } from "lucide-react";
+import { useState } from "react";
 
 const portrait = "/manus-storage/roksana-portrait_eea47550.png";
 const linkedinUrl = "https://www.linkedin.com/in/roksana-akhter-ripa";
@@ -16,14 +17,17 @@ const serviceGroups = [
   { icon: Database, number: "02", title: "SEO Research & Competitive Intelligence", items: "Keyword research · Competitor analysis · Market research · Content strategy · Business intelligence · Reporting" },
   { icon: Globe2, number: "03", title: "Web Scraping & Data Extraction", items: "Website and directory extraction · eCommerce scraping · Lead research · Email list building · Data cleaning and verification" },
   { icon: FileSpreadsheet, number: "04", title: "Website & Data Management", items: "WordPress content management · Shopify product management · CRM organization · Excel and Google Sheets automation" },
+  { icon: Share2, number: "05", title: "Social Media Account Creation & Management", items: "Facebook · Instagram · YouTube · TikTok · Page creation and setup · Content posting and ongoing page management" },
 ];
 
 const roles = [
-  { period: "CURRENT ROLE / 01", company: "Lighthouse Internet Media", title: "Digital Administrator", detail: "Supporting digital operations across technical SEO, AI search optimization, research, data workflows, and web management." },
-  { period: "CURRENT ROLE / 02", company: "socialbook.io", title: "Data Enrich Administrator", detail: "Organizing, enriching, and maintaining structured data so teams can work from cleaner, more useful information." },
+  { period: "2022 — PRESENT / 01", company: "Lighthouse Internet Media", title: "Digital Administrator", detail: "Supporting digital operations across technical SEO, AI search optimization, research, data workflows, web management, and client social media work.", responsibilities: ["Technical SEO and AI Search Optimization support", "Competitor research, structured data analysis, and web extraction", "Social media page creation, setup, and content posting for clients"] },
+  { period: "2022 — PRESENT / 02", company: "socialbook.io", title: "Data Enrich Administrator", detail: "Organizing, enriching, and maintaining structured data so teams can work from cleaner, more useful information.", responsibilities: ["Data enrichment and quality-focused record maintenance", "Research, verification, and structured information management", "Consistent delivery of clean, usable data for downstream teams"] },
 ];
 
 export default function About() {
+  const [expandedRole, setExpandedRole] = useState(roles[0].company);
+
   return (
     <div className="about-page">
       <header className="about-topbar section-wrap">
@@ -41,7 +45,7 @@ export default function About() {
 
         <section className="section-wrap about-section-block"><div className="about-section-intro"><span className="section-label"><span>01</span><span>How I think</span></span><h2>Beyond rankings.<br /><em>Into answers.</em></h2></div><div className="about-section-copy"><p>As search evolves beyond traditional rankings, I help businesses prepare for Google Search, AI Overviews, ChatGPT, Gemini, Perplexity, and other answer-driven experiences while building sustainable organic growth strategies.</p><p>I don’t simply complete tasks—I analyze problems, uncover opportunities, and provide practical recommendations that help businesses improve search visibility, understand competitors, and make confident, data-driven decisions.</p><div className="check-list"><span><Check size={15} /> Actionable recommendations</span><span><Check size={15} /> Detail-oriented research</span><span><Check size={15} /> Clear, reliable communication</span></div></div></section>
 
-        <section className="about-roles-section"><div className="section-wrap"><div className="about-section-intro"><span className="section-label"><span>02</span><span>Current roles</span></span><h2>Two teams.<br /><em>One data-minded practice.</em></h2></div><div className="about-role-list">{roles.map((role) => <article className="about-role" key={role.company}><span className="mono">{role.period}</span><div><h3>{role.title}</h3><p className="about-company">{role.company}</p><p>{role.detail}</p></div><ArrowUpRight size={18} /></article>)}</div></div></section>
+        <section className="about-roles-section"><div className="section-wrap"><div className="about-section-intro"><span className="section-label"><span>02</span><span>Current roles</span></span><h2>Two teams.<br /><em>One data-minded practice.</em></h2></div><div className="about-role-list">{roles.map((role) => <article className={`about-role ${expandedRole === role.company ? "is-expanded" : ""}`} key={role.company}><button className="about-role-toggle" type="button" aria-expanded={expandedRole === role.company} aria-controls={`role-details-${role.company.replace(/\\s+/g, "-")}`} onClick={() => setExpandedRole(expandedRole === role.company ? "" : role.company)}><span className="mono">{role.period}</span><span><h3>{role.title}</h3><span className="about-company">{role.company}</span><span className="about-role-summary">{role.detail}</span></span>{expandedRole === role.company ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</button>{expandedRole === role.company && <div className="about-role-details" id={`role-details-${role.company.replace(/\\s+/g, "-")}`}><span className="mono">KEY RESPONSIBILITIES</span><ul>{role.responsibilities.map((responsibility) => <li key={responsibility}><Check size={13} /> {responsibility}</li>)}</ul></div>}</article>)}</div></div></section>
 
         <section className="section-wrap about-services-section"><div className="about-section-intro"><span className="section-label"><span>03</span><span>What I can help with</span></span><h2>A useful range.<br /><em>Focused execution.</em></h2></div><div className="about-service-list">{serviceGroups.map(({ icon: Icon, number, title, items }) => <article className="about-service" key={title}><span className="service-number">{number}</span><Icon size={23} strokeWidth={1.5} /><div><h3>{title}</h3><p>{items}</p></div><ArrowUpRight size={17} /></article>)}</div></section>
 
