@@ -20,7 +20,8 @@ import {
   Sun,
   X,
 } from "lucide-react";
-import { useEffect, useState, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useState, type FormEvent, type MouseEvent, type ReactNode } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../components/ui/tooltip";
 import { useTheme } from "../contexts/ThemeContext";
 
 const portrait = "/manus-storage/roksana-portrait_eea47550.png";
@@ -55,6 +56,19 @@ function SectionLabel({ number, children }: { number: string; children: string }
       <span>{number}</span>
       <span>{children}</span>
     </div>
+  );
+}
+
+function SocialLink({ href, label, children }: { href: string; label: string; children: ReactNode }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <a href={href} target="_blank" rel="noreferrer" aria-label={label}>
+          {children}
+        </a>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" sideOffset={8} className="social-tooltip">{label}</TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -124,7 +138,7 @@ export default function Home() {
           <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
           <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
           <a href="#about" onClick={(event) => handleNavClick(event, "about")}>About</a>
-          <span className="nav-socials" aria-label="Professional links"><a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="Roksana on LinkedIn" title="LinkedIn"><Linkedin size={15} /></a><a href={lighthouseUrl} target="_blank" rel="noreferrer" aria-label="Lighthouse Internet Media website" title="Lighthouse Internet Media"><Globe2 size={15} /></a></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
+          <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
           <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
       </header>
@@ -187,7 +201,7 @@ export default function Home() {
       {successOpen && <div className="success-modal-backdrop" role="presentation" onClick={() => setSuccessOpen(false)}><div className="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title" onClick={(event) => event.stopPropagation()}><div className="success-modal-mark"><Check size={24} /></div><span className="mono">FORM RECEIVED / 200</span><h2 id="success-title">Message received.</h2><p>Thank you for reaching out. Your note is safely on its way, and Roksana will be in touch soon.</p><button className="button button-primary" type="button" onClick={() => setSuccessOpen(false)}>Close <X size={16} /></button></div></div>}
 
 
-      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Digital Administration / Technical SEO / Data Intelligence</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="social-links" aria-label="Professional links"><a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="Roksana on LinkedIn" title="LinkedIn"><Linkedin size={15} /></a><a href={lighthouseUrl} target="_blank" rel="noreferrer" aria-label="Lighthouse Internet Media website" title="Lighthouse Internet Media"><Globe2 size={15} /></a></span><span className="legal-footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a></span><span className="mono">© 2026</span></div></footer>
+      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Digital Administration / Technical SEO / Data Intelligence</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="social-links" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink></span><span className="legal-footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a></span><span className="mono">© 2026</span></div></footer>
     </div>
   );
 }

@@ -260,3 +260,10 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .dark .nav-socials a, .dark .social-links { border-color: var(--border); }
 @media (max-width: 760px) { .nav-socials { justify-content: flex-start; margin-top: 5px; } .social-links { margin-left: 0; padding-left: 0; border-left: 0; } }
 @media (prefers-reduced-motion: reduce) { .nav-socials a, .social-links a { transition: color 180ms ease; } }
+
+/* Social tooltips: small editorial labels that confirm the destination without clutter. */
+.social-tooltip { border: 1px solid rgba(255,255,255,.2); border-radius: 2px; background: var(--ink); color: var(--ivory); font: 500 10px/1.25 "IBM Plex Mono", monospace; letter-spacing: .05em; text-transform: uppercase; box-shadow: 5px 5px 0 var(--blue); }
+.nav-socials a:focus-visible, .social-links a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.nav-socials a:hover { background: color-mix(in srgb, var(--blue) 10%, transparent); }
+.social-links a { position: relative; width: 26px; height: 26px; border-radius: 50%; }
+.social-links a:hover { background: color-mix(in srgb, var(--blue) 10%, transparent); }
