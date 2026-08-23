@@ -1,11 +1,9 @@
-# Roksana Client Industry and Website Confirmation Checklist
+# Roksana Client Category Filter Checklist
 
-- [x] Research likely official websites for all supplied clients.
-- [x] Flag ambiguous or unverified website matches.
-- [x] Map each client to a defensible industry category.
-- [x] Show the proposed website mapping to Roksana for confirmation.
-- [x] Add per-client service descriptions without inventing unsupported claims.
-- [x] Implement responsive industry-grouped client cards with subtle hover motion.
-- [x] Add only user-confirmed website links.
-- [x] Verify accessibility, responsive layout, and build integrity.
-- [x] Save and deliver the confirmed update.
+- [x] Add an All categories view above the Selected Clients grid.
+- [x] Add one filter option for each client industry group.
+- [x] Make the filter keyboard-accessible with clear active-state feedback.
+- [x] Preserve confirmed external client links and card descriptions.
+- [x] Verify filtered groups and responsive layout on desktop and mobile.
+- [x] Run TypeScript and production build checks.
+- [x] Save and deliver the updated portfolio checkpoint.

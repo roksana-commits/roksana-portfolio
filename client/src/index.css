@@ -407,3 +407,15 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .client-card small { margin-top: auto; padding-top: 14px; color: var(--blue); font: 500 10px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .05em; }
 @media (max-width: 760px) { .client-card-grid { grid-template-columns: 1fr; } .client-card { min-height: 138px; } }
 @media (prefers-reduced-motion: reduce) { .client-card, .client-card-top svg { transition: none; } }
+
+/* Client category filter: compact controls make the evidence index easy to scan without hiding the page structure. */
+.client-groups-wrap { min-width: 0; }
+.client-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+.client-filter-label { flex: 0 0 100%; margin-bottom: 3px; color: var(--muted-ink); font-size: 10px; }
+.client-filter button { padding: 8px 10px; color: var(--muted-ink); background: transparent; border: 1px solid var(--border); border-radius: 999px; font: 500 10px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .03em; transition: color 180ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.client-filter button:hover { color: var(--blue); border-color: var(--blue); transform: translateY(-1px); }
+.client-filter button.is-active { color: var(--ivory); background: var(--ink); border-color: var(--ink); }
+.client-filter button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.client-filter-status { margin: 0 0 1.3rem; color: var(--blue); font-size: 10px; }
+@media (max-width: 760px) { .client-filter { gap: 6px; } .client-filter button { padding: 7px 8px; font-size: 9px; } }
+@media (prefers-reduced-motion: reduce) { .client-filter button { transition: none; } }
