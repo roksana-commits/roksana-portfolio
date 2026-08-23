@@ -40,3 +40,12 @@
 - [x] Restore clean full-width spacing without affecting the header brand.
 - [x] Review desktop and mobile layouts and run validation checks.
 - [ ] Save and deliver the revised checkpoint.
+
+## Interactive Timeline and Layout Balance
+
+- [x] Audit the current About timeline interaction and post-rail spacing.
+- [x] Upgrade the timeline into a clear visual 2018-to-present experience path.
+- [x] Keep the existing milestones factual and keyboard accessible.
+- [x] Rebalance the logo, header, and hero padding after rail removal.
+- [x] Review desktop/mobile interaction and run validation checks.
+- [ ] Save and deliver the revised checkpoint.
