@@ -386,3 +386,24 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .client-name .mono { flex: 0 0 auto; color: var(--blue); font-size: 10px; }
 @media (max-width: 760px) { .about-clients-section { grid-template-columns: 1fr; gap: 2.5rem; } .client-name-grid { grid-template-columns: 1fr; } .client-name:nth-child(odd) { margin-right: 0; } }
 @media (prefers-reduced-motion: reduce) { .client-name { transition: none; } }
+
+/* Client experience grid: grouped by industry with factual service notes and confirmed external links. */
+.client-groups { display: grid; gap: 2.5rem; }
+.client-group { border-top: 1px solid var(--border); }
+.client-group-heading { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start; padding: 1.25rem 0 1rem; }
+.client-group-heading > .mono { color: var(--blue); font-size: 10px; }
+.client-group-heading h3 { margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.45rem); }
+.client-group-heading p { margin: 5px 0 0; color: var(--muted-ink); font-size: .92rem; line-height: 1.45; }
+.client-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.client-card { display: flex; flex-direction: column; min-height: 154px; padding: 1rem; color: var(--ink); background: color-mix(in srgb, var(--blue) 3%, transparent); border: 1px solid var(--border); transition: color 200ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 200ms var(--ease-out); }
+.client-card:hover { color: var(--ivory); background: var(--ink); border-color: var(--ink); transform: translateY(-3px); }
+.client-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.client-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; color: var(--blue); }
+.client-card-top svg { transition: transform 180ms var(--ease-out); }
+.client-card:hover .client-card-top svg { transform: translate(3px, -3px); }
+.client-card strong { font-size: 1.05rem; line-height: 1.2; }
+.client-card > span:not(.client-card-top) { display: block; margin-top: 8px; color: var(--muted-ink); font-size: .86rem; line-height: 1.45; }
+.client-card:hover > span:not(.client-card-top) { color: rgba(255,255,255,.7); }
+.client-card small { margin-top: auto; padding-top: 14px; color: var(--blue); font: 500 10px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .05em; }
+@media (max-width: 760px) { .client-card-grid { grid-template-columns: 1fr; } .client-card { min-height: 138px; } }
+@media (prefers-reduced-motion: reduce) { .client-card, .client-card-top svg { transition: none; } }

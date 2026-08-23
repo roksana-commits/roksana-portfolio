@@ -1,9 +1,11 @@
-# Roksana Selected Clients Checklist
+# Roksana Client Industry and Website Confirmation Checklist
 
-- [x] Normalize the supplied client names without inventing claims.
-- [x] Add a Selected Clients section to the About page.
-- [x] Describe the client list as organizations supported with content and digital work.
-- [x] Avoid fabricated testimonials, ratings, or endorsements.
-- [x] Verify desktop and mobile presentation.
-- [x] Run TypeScript and production build checks.
-- [x] Save and deliver the updated About page checkpoint.
+- [x] Research likely official websites for all supplied clients.
+- [x] Flag ambiguous or unverified website matches.
+- [x] Map each client to a defensible industry category.
+- [x] Show the proposed website mapping to Roksana for confirmation.
+- [x] Add per-client service descriptions without inventing unsupported claims.
+- [x] Implement responsive industry-grouped client cards with subtle hover motion.
+- [x] Add only user-confirmed website links.
+- [x] Verify accessibility, responsive layout, and build integrity.
+- [x] Save and deliver the confirmed update.

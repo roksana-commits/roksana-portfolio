@@ -20,7 +20,30 @@ const serviceGroups = [
   { icon: Share2, number: "05", title: "Social Media Account Creation & Management", items: "Facebook · Instagram · YouTube · TikTok · Page creation and setup · Content posting and ongoing page management" },
 ];
 
-const selectedClients = ["PWD Law Firm", "Dapena Law", "Executive Fairways Golf", "WTP Advisors", "Real X Trailers", "Prevail IWS", "GoCloud", "Tabacon Cigars & Spirits", "Hightech Payments", "Life Changing Chiropractic", "Law Office of Jose M. Francisco", "Law Office of Karla Lopez Fernandez"];
+const clientGroups = [
+  { category: "Legal", description: "Content and digital support for legal-service brands.", clients: [
+    { name: "PWD Law Firm", url: "https://www.pwdlawfirm.com/", services: "Content creation and digital support for a personal-injury law firm." },
+    { name: "Dapena Law", url: "https://dapenalaw.com/", services: "Content and page-support work for a multi-office legal practice." },
+    { name: "Law Office of Jose M. Francisco", url: "https://josefrancisco-lawyers.com/", services: "Content creation and digital support for a South Florida law office." },
+    { name: "Law Office of Karla Lopez-Fernandez", url: "https://lopezfernandezlaw.com/", services: "Content and digital support for a legal-services practice." },
+  ] },
+  { category: "B2B & Professional Services", description: "Research, data, content, and digital support for specialist businesses.", clients: [
+    { name: "WTP Advisors", url: "https://www.wtpadvisors.com/", services: "Content and research support for an international tax and advisory firm." },
+    { name: "Prevail IWS", url: "https://prevailiws.com/", services: "Content and digital support for a wealth-advisory brand." },
+    { name: "GoCloud", url: "https://gocloudinc.net/", services: "Content and digital support for an IT, cloud, and cybersecurity provider." },
+    { name: "Hightech Payments", url: "https://www.hightechpayments.com/", services: "Content and digital support for a payments-technology business." },
+  ] },
+  { category: "Consumer, Ecommerce & Hospitality", description: "Content and online support for product-led and customer-facing brands.", clients: [
+    { name: "Real X Trailers", url: "https://realxtrailers.com/", services: "Product content and digital support for a boat-trailer manufacturer." },
+    { name: "Tabacon Cigars & Spirits", url: "https://www.tabaconlounge.com/", services: "Content and digital support for a cigar-and-spirits hospitality brand." },
+  ] },
+  { category: "Golf & Business Networking", description: "Content support for a relationship-led golf and networking brand.", clients: [
+    { name: "Executive Fairways Golf", url: "https://executivefairwaysgolf.com/", services: "Content and digital support for a golf and business-networking platform." },
+  ] },
+  { category: "Healthcare", description: "Content and digital support for a patient-facing healthcare practice.", clients: [
+    { name: "Life Changing Chiropractic", url: "https://lifechangingchiropractic.janeapp.com/", services: "Content and digital support for a chiropractic practice; link opens its booking page." },
+  ] },
+];
 
 const roles = [
   { period: "2022 — PRESENT / 01", company: "Lighthouse Internet Media", title: "Digital Administrator", detail: "Supporting digital operations across technical SEO, AI search optimization, research, data workflows, web management, and client social media work.", responsibilities: ["Technical SEO and AI Search Optimization support", "Competitor research, structured data analysis, and web extraction", "Social media page creation, setup, and content posting for clients"] },
@@ -49,7 +72,7 @@ export default function About() {
 
         <section className="about-roles-section"><div className="section-wrap"><div className="about-section-intro"><span className="section-label"><span>02</span><span>Current roles</span></span><h2>Two teams.<br /><em>One data-minded practice.</em></h2></div><div className="about-role-list">{roles.map((role) => <article className={`about-role ${expandedRole === role.company ? "is-expanded" : ""}`} key={role.company}><button className="about-role-toggle" type="button" aria-expanded={expandedRole === role.company} aria-controls={`role-details-${role.company.replace(/\\s+/g, "-")}`} onClick={() => setExpandedRole(expandedRole === role.company ? "" : role.company)}><span className="mono">{role.period}</span><span><h3>{role.title}</h3><span className="about-company">{role.company}</span><span className="about-role-summary">{role.detail}</span></span>{expandedRole === role.company ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</button>{expandedRole === role.company && <div className="about-role-details" id={`role-details-${role.company.replace(/\\s+/g, "-")}`}><span className="mono">KEY RESPONSIBILITIES</span><ul>{role.responsibilities.map((responsibility) => <li key={responsibility}><Check size={13} /> {responsibility}</li>)}</ul></div>}</article>)}</div></div></section>
 
-        <section className="section-wrap about-clients-section"><div className="about-section-intro"><span className="section-label"><span>03</span><span>Selected clients</span></span><h2>Trusted with<br /><em>the details.</em></h2><p className="about-client-note">Organizations I have supported with content, research, data, and digital work.</p></div><div className="client-name-grid">{selectedClients.map((client, index) => <div className="client-name" key={client}><span className="mono">{String(index + 1).padStart(2, "0")}</span><span>{client}</span></div>)}</div></section>
+        <section className="section-wrap about-clients-section"><div className="about-section-intro"><span className="section-label"><span>03</span><span>Selected clients</span></span><h2>Trusted with<br /><em>the details.</em></h2><p className="about-client-note">Organizations I have supported with content, research, data, SEO, and digital work. Select a category to scan the range of industries.</p></div><div className="client-groups">{clientGroups.map((group, groupIndex) => <section className="client-group" key={group.category}><div className="client-group-heading"><span className="mono">{String(groupIndex + 1).padStart(2, "0")}</span><div><h3>{group.category}</h3><p>{group.description}</p></div></div><div className="client-card-grid">{group.clients.map((client, clientIndex) => <a className="client-card" href={client.url} target="_blank" rel="noreferrer" key={client.name} aria-label={`Visit ${client.name} website`}><span className="client-card-top"><span className="mono">{String(clientIndex + 1).padStart(2, "0")}</span><ArrowUpRight size={16} /></span><strong>{client.name}</strong><span>{client.services}</span><small>Visit website</small></a>)}</div></section>)}</div></section>
 
         <section className="section-wrap about-services-section"><div className="about-section-intro"><span className="section-label"><span>04</span><span>What I can help with</span></span><h2>A useful range.<br /><em>Focused execution.</em></h2></div><div className="about-service-list">{serviceGroups.map(({ icon: Icon, number, title, items }) => <article className="about-service" key={title}><span className="service-number">{number}</span><Icon size={23} strokeWidth={1.5} /><div><h3>{title}</h3><p>{items}</p></div><ArrowUpRight size={17} /></article>)}</div></section>
 
