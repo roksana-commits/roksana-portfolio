@@ -1,11 +1,9 @@
-# Roksana About Timeline and Social Media Checklist
+# Roksana Selected Clients Checklist
 
-- [x] Add Social Media Account Creation & Management service content.
-- [x] Include Facebook, Instagram, YouTube, and TikTok page setup and management.
-- [x] Include client content posting and page configuration responsibilities.
-- [x] Show Lighthouse Internet Media role as 2022–Present.
-- [x] Show socialbook.io role as 2022–Present.
-- [x] Add expandable timeline entries with key responsibilities.
-- [x] Verify keyboard-accessible interaction and responsive layout.
+- [x] Normalize the supplied client names without inventing claims.
+- [x] Add a Selected Clients section to the About page.
+- [x] Describe the client list as organizations supported with content and digital work.
+- [x] Avoid fabricated testimonials, ratings, or endorsements.
+- [x] Verify desktop and mobile presentation.
 - [x] Run TypeScript and production build checks.
-- [x] Save and deliver the updated portfolio checkpoint.
+- [x] Save and deliver the updated About page checkpoint.
