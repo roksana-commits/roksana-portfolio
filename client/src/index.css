@@ -419,3 +419,12 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .client-filter-status { margin: 0 0 1.3rem; color: var(--blue); font-size: 10px; }
 @media (max-width: 760px) { .client-filter { gap: 6px; } .client-filter button { padding: 7px 8px; font-size: 9px; } }
 @media (prefers-reduced-motion: reduce) { .client-filter button { transition: none; } }
+
+/* Social card alignment correction: fixed desktop row tracks keep longer brand names from stretching one row. */
+.social-connect-grid { align-items: stretch; grid-auto-rows: 128px; }
+.social-connect-card { grid-template-columns: 48px minmax(0, 1fr) 18px; min-height: 0; height: 100%; gap: 16px; align-items: center; }
+.social-connect-card > span:nth-child(2) { min-width: 0; display: grid; align-content: center; gap: 5px; }
+.social-connect-card strong { min-width: 0; line-height: 1.15; overflow-wrap: anywhere; }
+.social-connect-card small { margin-top: 0; line-height: 1.35; }
+.social-connect-card > svg { align-self: center; justify-self: end; }
+@media (max-width: 760px) { .social-connect-grid { grid-auto-rows: auto; } .social-connect-card { min-height: 108px; height: auto; } }

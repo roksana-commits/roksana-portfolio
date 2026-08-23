@@ -1,9 +1,9 @@
-# Roksana Client Category Filter Checklist
+# Social Connect Card Alignment Checklist
 
-- [x] Add an All categories view above the Selected Clients grid.
-- [x] Add one filter option for each client industry group.
-- [x] Make the filter keyboard-accessible with clear active-state feedback.
-- [x] Preserve confirmed external client links and card descriptions.
-- [x] Verify filtered groups and responsive layout on desktop and mobile.
+- [x] Review the social-connect card markup and current layout rules.
+- [x] Align icons, titles, descriptions, and arrows consistently across all cards.
+- [x] Prevent long Lighthouse Internet Media text from disturbing the grid.
+- [x] Preserve accessible labels, tooltips, and hover states.
+- [x] Verify desktop and mobile alignment.
 - [x] Run TypeScript and production build checks.
 - [x] Save and deliver the updated portfolio checkpoint.
