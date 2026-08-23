@@ -1,9 +1,11 @@
-# Roksana Social Icon Interaction Checklist
+# Roksana Social Connection and Sharing Checklist
 
-- [x] Add LinkedIn and Lighthouse Internet Media links to navigation and footer.
-- [x] Add accessible tooltips, aria-labels, and smooth hover/focus animations.
-- [x] Add Instagram URL as a shared constant.
-- [x] Add Instagram icon link to the navigation and footer.
-- [x] Verify all three external links, tooltips, and responsive presentation.
+- [x] Add the supplied Facebook URL as a shared social-link constant.
+- [x] Add Facebook to the navigation and footer icon groups.
+- [x] Add a dedicated social media links section below the contact form.
+- [x] Add a footer Share this portfolio control with copy-link support.
+- [x] Add native sharing support with a graceful fallback for unsupported browsers.
+- [x] Verify accessible labels, tooltips, focus states, and external link behavior.
+- [x] Verify desktop and mobile presentation.
 - [x] Run TypeScript and production build checks.
-- [x] Save and deliver the completed social-link checkpoint.
+- [x] Save and deliver the updated portfolio checkpoint.

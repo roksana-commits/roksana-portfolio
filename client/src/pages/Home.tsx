@@ -8,6 +8,8 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
+  Copy,
+  Facebook,
   Database,
   FileSpreadsheet,
   Globe2,
@@ -18,6 +20,7 @@ import {
   Menu,
   Moon,
   Search,
+  Share2,
   Sun,
   X,
 } from "lucide-react";
@@ -33,6 +36,7 @@ const formspreeEndpoint = "https://formspree.io/f/meajdyya";
 const linkedinUrl = "https://www.linkedin.com/in/roksana-akhter-ripa";
 const lighthouseUrl = "https://lighthouseinternetmedia.com";
 const instagramUrl = "https://www.instagram.com/roksana.ripa.1993";
+const facebookUrl = "https://www.facebook.com/roksana.akhter.ripa.1993";
 
 type FormStatus = { type: "idle" | "success" | "error"; message: string };
 
@@ -80,6 +84,8 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareStatus, setShareStatus] = useState("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({ type: "idle", message: "" });
   const closeMenu = () => setMenuOpen(false);
@@ -99,6 +105,17 @@ export default function Home() {
     event.preventDefault();
     closeMenu();
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const handleShare = async () => {
+    const shareData = { title: "Roksana — Digital Administrator", text: "Explore Roksana’s portfolio.", url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(shareData); setShareStatus("Thanks for sharing."); } catch { setShareStatus(""); }
+      return;
+    }
+    try { await navigator.clipboard.writeText(window.location.href); setShareStatus("Portfolio link copied."); } catch { setShareStatus("Copy the URL from your browser to share it."); }
+  };
+  const handleCopyLink = async () => {
+    try { await navigator.clipboard.writeText(window.location.href); setShareStatus("Portfolio link copied."); } catch { setShareStatus("Copy the URL from your browser to share it."); }
   };
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -140,7 +157,7 @@ export default function Home() {
           <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
           <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
           <a href="#about" onClick={(event) => handleNavClick(event, "about")}>About</a>
-          <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
+          <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink><SocialLink href={facebookUrl} label="Roksana on Facebook"><Facebook size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
           <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
       </header>
@@ -196,6 +213,8 @@ export default function Home() {
         </section>
 
         <section className="contact-section" id="contact"><div className="contact-mark">R</div><div className="section-wrap contact-inner"><div className="contact-intro"><SectionLabel number="05" children="Start a conversation" /><h2>Bring me<br /><em>the messy part.</em></h2><p>Tell me what you’re trying to understand, organize, or improve. I’ll meet you where the problem is.</p><a className="button button-dark" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Open Freelancer profile <ArrowUpRight size={17} /></a></div><form className="contact-form" onSubmit={handleSubmit} noValidate><div className="form-heading"><span className="mono">DIRECT LINE</span><span className="form-rule" /></div><label htmlFor="contact-name">Name<input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label><label htmlFor="contact-email">Email<input id="contact-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label><label htmlFor="contact-message">What can I help with?<textarea id="contact-message" name="message" rows={4} placeholder="A few lines about the project..." required value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} /></label><button className="button button-dark form-submit" type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>{isSubmitting ? "Sending…" : "Send message"} {!isSubmitting && <ArrowUpRight size={17} />}</button><p className={`form-status ${formStatus.type}`} aria-live="polite">{formStatus.message}</p><p className="privacy-notice"><LockKeyhole size={14} /> Your details are sent securely through Formspree and used only to respond to your enquiry.</p></form></div></section>
+
+        <section className="social-connect-section section-wrap" aria-labelledby="social-connect-title"><div className="social-connect-heading"><SectionLabel number="06" children="Find me online" /><h2 id="social-connect-title">Keep the<br /><em>conversation moving.</em></h2><p>Follow along, explore the work, or connect through the places where I share what I’m learning and building.</p></div><div className="social-connect-grid"><a className="social-connect-card" href={linkedinUrl} target="_blank" rel="noreferrer"><span className="social-connect-icon"><Linkedin size={22} /></span><span><strong>LinkedIn</strong><small>Professional updates</small></span><ArrowUpRight size={18} /></a><a className="social-connect-card" href={instagramUrl} target="_blank" rel="noreferrer"><span className="social-connect-icon"><Instagram size={22} /></span><span><strong>Instagram</strong><small>Behind the scenes</small></span><ArrowUpRight size={18} /></a><a className="social-connect-card" href={facebookUrl} target="_blank" rel="noreferrer"><span className="social-connect-icon"><Facebook size={22} /></span><span><strong>Facebook</strong><small>Connect socially</small></span><ArrowUpRight size={18} /></a><a className="social-connect-card" href={lighthouseUrl} target="_blank" rel="noreferrer"><span className="social-connect-icon"><Globe2 size={22} /></span><span><strong>Lighthouse Internet Media</strong><small>Company website</small></span><ArrowUpRight size={18} /></a></div></section>
       </main>
 
       <button className={`back-to-top ${showBackToTop ? "is-visible" : ""}`} type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp size={15} /> <span>Back to top</span></button>
@@ -203,7 +222,7 @@ export default function Home() {
       {successOpen && <div className="success-modal-backdrop" role="presentation" onClick={() => setSuccessOpen(false)}><div className="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title" onClick={(event) => event.stopPropagation()}><div className="success-modal-mark"><Check size={24} /></div><span className="mono">FORM RECEIVED / 200</span><h2 id="success-title">Message received.</h2><p>Thank you for reaching out. Your note is safely on its way, and Roksana will be in touch soon.</p><button className="button button-primary" type="button" onClick={() => setSuccessOpen(false)}>Close <X size={16} /></button></div></div>}
 
 
-      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Digital Administration / Technical SEO / Data Intelligence</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="social-links" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink></span><span className="legal-footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a></span><span className="mono">© 2026</span></div></footer>
+      <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Digital Administration / Technical SEO / Data Intelligence</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="social-links" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink><SocialLink href={facebookUrl} label="Roksana on Facebook"><Facebook size={15} /></SocialLink></span><div className="share-menu"><button className="share-trigger" type="button" aria-expanded={shareOpen} aria-haspopup="true" onClick={() => { setShareOpen(!shareOpen); setShareStatus(""); }}><Share2 size={14} /> Share this portfolio</button>{shareOpen && <div className="share-popover" role="menu"><button type="button" role="menuitem" onClick={handleCopyLink}><Copy size={14} /> Copy link</button><button type="button" role="menuitem" onClick={handleShare}><Share2 size={14} /> Share directly</button><a role="menuitem" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</a><a role="menuitem" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noreferrer"><Facebook size={14} /> Facebook</a>{shareStatus && <span className="share-status" aria-live="polite">{shareStatus}</span>}</div>}</div><span className="legal-footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a></span><span className="mono">© 2026</span></div></footer>
     </div>
   );
 }

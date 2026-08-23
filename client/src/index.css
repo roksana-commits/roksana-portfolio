@@ -267,3 +267,28 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .nav-socials a:hover { background: color-mix(in srgb, var(--blue) 10%, transparent); }
 .social-links a { position: relative; width: 26px; height: 26px; border-radius: 50%; }
 .social-links a:hover { background: color-mix(in srgb, var(--blue) 10%, transparent); }
+
+/* Social connection section: a structured bridge from contact to ongoing professional connection. */
+.social-connect-section { display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 7vw, 7rem); padding-top: clamp(4rem, 9vw, 8rem); padding-bottom: clamp(4rem, 9vw, 8rem); border-top: 1px solid var(--border); }
+.social-connect-heading h2 { margin: 1.2rem 0 1rem; max-width: 430px; }
+.social-connect-heading p { max-width: 380px; color: var(--muted-ink); }
+.social-connect-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; }
+.social-connect-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; min-height: 84px; padding: 16px 18px; border: 1px solid var(--border); color: var(--ink); background: color-mix(in srgb, var(--ivory) 70%, transparent); transition: transform 220ms var(--ease-out), border-color 220ms var(--ease-out), background 220ms var(--ease-out), box-shadow 220ms var(--ease-out); }
+.social-connect-card:hover { transform: translate(-3px, -3px); border-color: var(--blue); background: var(--surface); box-shadow: 5px 5px 0 var(--blue); }
+.social-connect-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.social-connect-icon { display: grid; place-items: center; width: 40px; height: 40px; color: var(--blue); border: 1px solid currentColor; border-radius: 50%; }
+.social-connect-card strong, .social-connect-card small { display: block; }
+.social-connect-card strong { font-size: 14px; }
+.social-connect-card small { margin-top: 4px; color: var(--muted-ink); font: 500 10px/1.3 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .05em; }
+.social-connect-card > svg { color: var(--blue); transition: transform 180ms var(--ease-out); }
+.social-connect-card:hover > svg { transform: translate(3px, -3px); }
+.share-menu { position: relative; display: inline-flex; }
+.share-trigger { display: inline-flex; align-items: center; gap: 7px; padding: 0; color: var(--muted-ink); background: transparent; border: 0; font: 500 10px/1.3 "IBM Plex Mono", monospace; letter-spacing: .04em; text-transform: uppercase; transition: color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.share-trigger:hover { color: var(--blue); transform: translateY(-1px); }
+.share-trigger:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.share-popover { position: absolute; right: 0; bottom: calc(100% + 12px); z-index: 20; display: grid; min-width: 178px; padding: 7px; gap: 2px; border: 1px solid var(--border); background: var(--surface); box-shadow: 6px 6px 0 var(--blue); }
+.share-popover button, .share-popover a { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 0; color: var(--ink); background: transparent; text-align: left; font: 500 10px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
+.share-popover button:hover, .share-popover a:hover, .share-popover button:focus-visible, .share-popover a:focus-visible { color: var(--blue); background: color-mix(in srgb, var(--blue) 9%, transparent); outline: none; }
+.share-status { padding: 7px 10px 4px; color: var(--blue); font: 500 10px/1.3 "IBM Plex Mono", monospace; }
+@media (max-width: 760px) { .social-connect-section { grid-template-columns: 1fr; gap: 2.5rem; } .social-connect-grid { grid-template-columns: 1fr; } .share-popover { right: auto; left: 0; } }
+@media (prefers-reduced-motion: reduce) { .social-connect-card, .social-connect-card > svg, .share-trigger { transition: none; } }
