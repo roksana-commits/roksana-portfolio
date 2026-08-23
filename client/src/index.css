@@ -477,16 +477,7 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 }
 @media (prefers-reduced-motion: reduce) { .brand-badge { transition: none; animation: none; } }
 
-/* Signal & Structure system refinement: persistent case-file rail, bracketed R motif, and evidence-led records. */
-.editorial-rail { position: fixed; left: 0; top: 0; bottom: 0; z-index: 8; width: 42px; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 23px 0 18px; border-right: 1px solid var(--border); background: color-mix(in srgb, var(--ivory) 92%, transparent); color: var(--ink-soft); }
-.rail-mark { position: relative; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--blue); color: var(--blue); font: 700 12px/1 "Space Grotesk", sans-serif; }
-.rail-mark::before, .rail-mark::after { content: ""; position: absolute; width: 6px; height: 6px; border-color: var(--blue); }
-.rail-mark::before { top: -4px; left: -4px; border-top: 1px solid; border-left: 1px solid; }
-.rail-mark::after { right: -4px; bottom: -4px; border-right: 1px solid; border-bottom: 1px solid; }
-.rail-rule { width: 1px; height: 48px; background: var(--blue); opacity: .75; }
-.rail-meta { writing-mode: vertical-rl; transform: rotate(180deg); font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; white-space: nowrap; }
-.rail-meta:last-child { margin-top: auto; color: var(--blue); }
-.about-rail { background: color-mix(in srgb, var(--ivory-2) 92%, transparent); }
+/* Signal & Structure system refinement: bracketed R motif and evidence-led records. */
 .brand-badge::after { content: ""; position: absolute; width: 7px; height: 7px; right: -4px; top: -4px; border-top: 1px solid var(--terracotta); border-right: 1px solid var(--terracotta); pointer-events: none; }
 .portrait-frame::before, .about-hero-visual::before { content: "R / SIGNAL"; position: absolute; top: -12px; right: 10px; color: var(--blue); font: 500 8px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; }
 .client-card, .social-connect-card { position: relative; overflow: hidden; }
@@ -497,14 +488,11 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .service-row::after, .about-service::after, .about-role::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 34px; height: 2px; background: color-mix(in srgb, var(--blue) 68%, transparent); transform-origin: left; transition: transform 180ms var(--ease-out); }
 .service-row:hover::after, .about-service:hover::after, .about-role:hover::after { transform: scaleX(1.8); }
 @media (max-width: 800px) {
-  .editorial-rail { display: none; }
   .portrait-frame::before, .about-hero-visual::before { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .service-row::after, .about-service::after, .about-role::after { transition: none; }
 }
-.dark .editorial-rail { background: color-mix(in srgb, var(--ink) 94%, transparent); }
-.dark .about-rail { background: color-mix(in srgb, var(--ink-2) 94%, transparent); }
 
 /* Signal & Structure About milestone: make the 2018 origin legible as an evidence-led career record, not a generic card. */
 .about-experience-stamp { display: inline-flex; align-items: center; gap: 12px; margin: 20px 0 8px; color: var(--blue); }

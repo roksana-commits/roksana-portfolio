@@ -32,3 +32,11 @@
 - [x] Ensure About page consistently shows 9+ years from 2018 and the Amazon affiliate background.
 - [x] Review desktop and mobile pages and run validation checks.
 - [ ] Save and deliver the revised checkpoint.
+
+## Left Rail Removal
+
+- [x] Audit left-side rail markup and layout offsets.
+- [x] Remove the persistent left rail from Home and About.
+- [x] Restore clean full-width spacing without affecting the header brand.
+- [x] Review desktop and mobile layouts and run validation checks.
+- [ ] Save and deliver the revised checkpoint.

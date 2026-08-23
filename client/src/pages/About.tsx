@@ -61,7 +61,6 @@ export default function About() {
 
   return (
     <div className="about-page">
-      <aside className="editorial-rail about-rail" aria-label="Portfolio index"><span className="rail-mark">R</span><span className="rail-rule" /><span className="rail-meta">ROKSANA / ABOUT</span><span className="rail-meta">DATA INTELLIGENCE</span><span className="rail-meta">CASE FILE / 2026</span></aside>
       <header className="about-topbar section-wrap">
         <a className="brand" href="/" aria-label="Return to Roksana home"><span className="brand-badge"><span className="brand-mark about-mark">R</span></span><span>ROKSANA</span></a>
         <a className="about-back" href="/"><ArrowLeft size={15} /> Back to portfolio</a>
