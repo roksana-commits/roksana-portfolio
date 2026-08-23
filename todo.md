@@ -1,8 +1,9 @@
-# Roksana Portfolio Review Checklist
+# Roksana Portfolio Social Links Checklist
 
-- [x] Audit visible role, employer, service, and profile wording against supplied materials.
-- [x] Update current role to Digital Administrator at Lighthouse Internet Media.
-- [x] Correct any typos, awkward wording, or unsupported positioning found during review.
-- [x] Verify navigation, legal links, contact details, and consent banner remain intact.
-- [x] Verify the revised desktop and mobile layouts.
-- [x] Save and deliver the reviewed portfolio checkpoint.
+- [x] Add LinkedIn and Lighthouse Internet Media URLs as shared constants.
+- [x] Add accessible social icons to the navigation bar.
+- [x] Add accessible social icons to the footer.
+- [x] Verify target and rel behavior for external links.
+- [x] Verify desktop and mobile presentation.
+- [x] Run TypeScript and production build checks.
+- [x] Save and deliver the updated portfolio checkpoint.

@@ -249,3 +249,14 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 .dark .cookie-banner { box-shadow: 0 12px 36px rgba(0,0,0,.42); }
 @media (max-width: 700px) { .cookie-banner { left: 12px; right: 12px; bottom: 12px; align-items: stretch; flex-direction: column; gap: 14px; padding: 16px; } .cookie-actions { width: 100%; } .cookie-button { flex: 1; } }
 @media (prefers-reduced-motion: reduce) { .cookie-banner { animation: none; } }
+
+/* Social links: compact professional shortcuts that share the portfolio’s blue signal language. */
+.nav-socials, .social-links { display: inline-flex; align-items: center; gap: 6px; }
+.nav-socials a, .social-links a { display: inline-grid; place-items: center; color: var(--muted-ink); transition: color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.nav-socials a { width: 26px; height: 26px; border: 1px solid var(--border); border-radius: 50%; }
+.nav-socials a:hover, .social-links a:hover { color: var(--blue); transform: translateY(-2px); }
+.nav-socials a:active, .social-links a:active { transform: scale(.96); }
+.social-links { margin-left: 4px; padding-left: 12px; border-left: 1px solid var(--border); }
+.dark .nav-socials a, .dark .social-links { border-color: var(--border); }
+@media (max-width: 760px) { .nav-socials { justify-content: flex-start; margin-top: 5px; } .social-links { margin-left: 0; padding-left: 0; border-left: 0; } }
+@media (prefers-reduced-motion: reduce) { .nav-socials a, .social-links a { transition: color 180ms ease; } }
