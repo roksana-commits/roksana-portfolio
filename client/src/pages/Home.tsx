@@ -187,7 +187,7 @@ export default function Home() {
           <div className="hero-copy">
             <div className="eyebrow"><span className="eyebrow-dot" /> Available for focused projects <span className="mono">/ 2026</span></div>
             <h1>Clear answers<br /><em>from complicated</em><br />data.</h1>
-            <p className="hero-intro">I’m Roksana — a Digital Administrator at Lighthouse Internet Media, working across technical SEO, data intelligence, and web scraping to turn scattered information into dependable next steps.</p>
+            <p className="hero-intro">I’m Roksana — a Digital Administrator at Lighthouse Internet Media with 9+ years of freelancing experience since 2018, working across technical SEO, data intelligence, and web scraping to turn scattered information into dependable next steps.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">View my profile <ArrowUpRight size={17} /></a>
               <a className="text-link" href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>See how I help <ChevronDown size={16} /></a>
@@ -223,7 +223,7 @@ export default function Home() {
         <section className="signal-section" id="about">
           <div className="section-wrap signal-grid">
             <div className="signal-image"><img src={detailTexture} alt="Close-up abstract data ticks and connecting lines" /><span className="image-caption mono">A small detail<br />can change the answer.</span></div>
-            <div className="signal-copy"><SectionLabel number="03" children="The signal index" /><h2>Strong on detail.<br /><em>Good with the whole picture.</em></h2><p>My work lives between research and execution. I’m comfortable finding the right source, shaping messy inputs, and delivering an output that someone else can actually use.</p><div className="skill-list">{skills.map((skill) => <div className="skill-item" key={skill.name}><div className="skill-top"><span>{skill.name}</span><span className="mono">{skill.value}</span></div><div className="skill-track"><span style={{ width: skill.width }} /></div></div>)}</div><a className="text-link" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Explore the full work history <ArrowUpRight size={16} /></a></div>
+            <div className="signal-copy"><SectionLabel number="03" children="Verified earnings" /><h2>Strong on detail.<br /><em>Good with the whole picture.</em></h2><p className="verified-earnings-note"><span className="verified-dot" /> Real, verified earnings figures from my Freelancer.com profile.</p><p>My work lives between research and execution. I’m comfortable finding the right source, shaping messy inputs, and delivering an output that someone else can actually use.</p><div className="skill-list">{skills.map((skill) => <div className="skill-item" key={skill.name}><div className="skill-top"><span>{skill.name}</span><span className="mono">{skill.value}</span></div><div className="skill-track"><span style={{ width: skill.width }} /></div></div>)}</div><a className="text-link" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Explore the full work history <ArrowUpRight size={16} /></a></div>
           </div>
         </section>
 

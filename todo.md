@@ -24,3 +24,11 @@
 - [x] Add accurate Amazon affiliate website-building and affiliate-marketing responsibilities.
 - [x] Verify responsive About-page layout and content consistency.
 - [x] Run checks and save the revised checkpoint.
+
+## Portfolio Consistency Audit
+
+- [x] Audit experience years, 2018 milestone, Amazon affiliate background, and earnings labels across all pages.
+- [x] Make homepage earnings explicitly real and verified.
+- [x] Ensure About page consistently shows 9+ years from 2018 and the Amazon affiliate background.
+- [x] Review desktop and mobile pages and run validation checks.
+- [ ] Save and deliver the revised checkpoint.
