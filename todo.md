@@ -16,3 +16,11 @@
 - [x] Update the homepage, About page, and document metadata to 9+ years.
 - [x] Add the 2018 freelancing context where it improves factual clarity.
 - [x] Run checks and save the revised checkpoint.
+
+## About Timeline and Early Experience Update
+
+- [x] Audit the current About-page role timeline and 9+ years references.
+- [x] Add a dedicated 2018 freelancing milestone.
+- [x] Add accurate Amazon affiliate website-building and affiliate-marketing responsibilities.
+- [x] Verify responsive About-page layout and content consistency.
+- [x] Run checks and save the revised checkpoint.

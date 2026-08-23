@@ -505,3 +505,30 @@ h1 em, h2 em { color: var(--blue); font-style: normal; }
 }
 .dark .editorial-rail { background: color-mix(in srgb, var(--ink) 94%, transparent); }
 .dark .about-rail { background: color-mix(in srgb, var(--ink-2) 94%, transparent); }
+
+/* Signal & Structure About milestone: make the 2018 origin legible as an evidence-led career record, not a generic card. */
+.about-experience-stamp { display: inline-flex; align-items: center; gap: 12px; margin: 20px 0 8px; color: var(--blue); }
+.about-experience-stamp strong { font: 700 clamp(2.4rem, 5vw, 4rem)/.82 "Space Grotesk", sans-serif; letter-spacing: -.08em; }
+.about-experience-stamp strong span { font-size: .52em; letter-spacing: -.04em; }
+.about-experience-stamp > span { padding-left: 12px; border-left: 1px solid var(--blue); font: 500 9px/1.45 "IBM Plex Mono", monospace; letter-spacing: .08em; }
+.about-journey-section { padding-top: clamp(4.5rem, 9vw, 8rem); padding-bottom: clamp(4.5rem, 9vw, 8rem); background: var(--ivory-2); }
+.about-milestone-list { position: relative; }
+.about-milestone-list::before { content: ""; position: absolute; left: 7px; top: 9px; bottom: 9px; width: 1px; background: color-mix(in srgb, var(--blue) 45%, var(--border)); }
+.about-milestone { position: relative; display: grid; grid-template-columns: minmax(120px, 1fr) minmax(0, 2fr); gap: clamp(1.5rem, 4vw, 4rem); padding: 8px 0 8px 30px; }
+.milestone-node { position: absolute; left: 1px; top: 11px; width: 13px; height: 13px; border: 2px solid var(--ivory-2); outline: 1px solid var(--blue); background: var(--blue); }
+.milestone-period { color: var(--blue); font-size: 10px; letter-spacing: .1em; }
+.milestone-body { max-width: 620px; padding: 0 0 5px 20px; border-left: 1px solid var(--border); }
+.milestone-body > .mono { color: var(--terracotta); font-size: 10px; letter-spacing: .08em; }
+.milestone-body h3 { margin: 10px 0 8px; font: 600 clamp(1.35rem, 2.5vw, 2rem)/1.05 "Space Grotesk", sans-serif; }
+.milestone-body p { max-width: 58ch; margin: 0 0 16px; color: var(--ink-soft); }
+.milestone-body ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; color: var(--ink-soft); font-size: 13px; }
+.milestone-body li { display: flex; align-items: flex-start; gap: 8px; }
+.milestone-body li svg { flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+.dark .about-journey-section { background: var(--ink-2); }
+.dark .milestone-node { border-color: var(--ink-2); }
+@media (max-width: 800px) {
+  .about-experience-stamp { margin-top: 14px; }
+  .about-milestone { grid-template-columns: 1fr; gap: 9px; padding-left: 26px; }
+  .milestone-body { padding-left: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .about-milestone { transition: none; } }
