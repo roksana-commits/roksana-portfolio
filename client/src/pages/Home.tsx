@@ -4,6 +4,7 @@
  * guide the reading path. Motion stays short and purposeful.
  */
 import {
+  ArrowUp,
   ArrowUpRight,
   Check,
   ChevronDown,
@@ -11,13 +12,14 @@ import {
   FileSpreadsheet,
   Globe2,
   Mail,
+  LockKeyhole,
   Menu,
   Moon,
   Search,
   Sun,
   X,
 } from "lucide-react";
-import { useState, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useState, type FormEvent, type MouseEvent } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
 const portrait = "/manus-storage/roksana-portrait_eea47550.png";
@@ -57,9 +59,23 @@ export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState<FormStatus>({ type: "idle", message: "" });
   const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 520);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    if (!successOpen) return;
+    const handleEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setSuccessOpen(false); };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [successOpen]);
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault();
     closeMenu();
@@ -82,6 +98,7 @@ export default function Home() {
       if (!response.ok) throw new Error("Form submission failed");
       setForm({ name: "", email: "", message: "" });
       setFormStatus({ type: "success", message: "Message sent. Thank you — I’ll be in touch soon." });
+      setSuccessOpen(true);
     } catch {
       setFormStatus({ type: "error", message: "Something went wrong. Please try again or email me directly." });
     } finally {
@@ -159,8 +176,12 @@ export default function Home() {
           <div className="about-copy"><h2>Good work starts<br />with a <em>clear brief.</em></h2><p>Whether you need a research partner, a careful operator, or someone to make sense of a large set of web data, I bring a practical mindset and a steady eye for what matters.</p><div className="check-list"><span><Check size={15} /> Clear communication</span><span><Check size={15} /> Detail-aware delivery</span><span><Check size={15} /> Independent momentum</span></div></div>
         </section>
 
-        <section className="contact-section" id="contact"><div className="contact-mark">R</div><div className="section-wrap contact-inner"><div className="contact-intro"><SectionLabel number="05" children="Start a conversation" /><h2>Bring me<br /><em>the messy part.</em></h2><p>Tell me what you’re trying to understand, organize, or improve. I’ll meet you where the problem is.</p><a className="button button-dark" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Open Freelancer profile <ArrowUpRight size={17} /></a></div><form className="contact-form" onSubmit={handleSubmit} noValidate><div className="form-heading"><span className="mono">DIRECT LINE</span><span className="form-rule" /></div><label htmlFor="contact-name">Name<input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label><label htmlFor="contact-email">Email<input id="contact-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label><label htmlFor="contact-message">What can I help with?<textarea id="contact-message" name="message" rows={4} placeholder="A few lines about the project..." required value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} /></label><button className="button button-dark form-submit" type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>{isSubmitting ? "Sending…" : "Send message"} {!isSubmitting && <ArrowUpRight size={17} />}</button><p className={`form-status ${formStatus.type}`} aria-live="polite">{formStatus.message}</p></form></div></section>
+        <section className="contact-section" id="contact"><div className="contact-mark">R</div><div className="section-wrap contact-inner"><div className="contact-intro"><SectionLabel number="05" children="Start a conversation" /><h2>Bring me<br /><em>the messy part.</em></h2><p>Tell me what you’re trying to understand, organize, or improve. I’ll meet you where the problem is.</p><a className="button button-dark" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Open Freelancer profile <ArrowUpRight size={17} /></a></div><form className="contact-form" onSubmit={handleSubmit} noValidate><div className="form-heading"><span className="mono">DIRECT LINE</span><span className="form-rule" /></div><label htmlFor="contact-name">Name<input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label><label htmlFor="contact-email">Email<input id="contact-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label><label htmlFor="contact-message">What can I help with?<textarea id="contact-message" name="message" rows={4} placeholder="A few lines about the project..." required value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} /></label><button className="button button-dark form-submit" type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>{isSubmitting ? "Sending…" : "Send message"} {!isSubmitting && <ArrowUpRight size={17} />}</button><p className={`form-status ${formStatus.type}`} aria-live="polite">{formStatus.message}</p><p className="privacy-notice"><LockKeyhole size={14} /> Your details are sent securely through Formspree and used only to respond to your enquiry.</p></form></div></section>
       </main>
+
+      <button className={`back-to-top ${showBackToTop ? "is-visible" : ""}`} type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ArrowUp size={15} /> <span>Back to top</span></button>
+
+      {successOpen && <div className="success-modal-backdrop" role="presentation" onClick={() => setSuccessOpen(false)}><div className="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title" onClick={(event) => event.stopPropagation()}><div className="success-modal-mark"><Check size={24} /></div><span className="mono">FORM RECEIVED / 200</span><h2 id="success-title">Message received.</h2><p>Thank you for reaching out. Your note is safely on its way, and Roksana will be in touch soon.</p><button className="button button-primary" type="button" onClick={() => setSuccessOpen(false)}>Close <X size={16} /></button></div></div>}
 
       <footer className="footer section-wrap"><div><span className="footer-brand">ROKSANA<span className="blue">.</span></span><span className="mono">Technical SEO / Data Intelligence / Web Scraping</span></div><div className="footer-right"><a href="mailto:roksana@lighthouseinternetmedia.com"><Mail size={15} /> Lighthouse email</a><a href="mailto:roksana.ripa.1993@gmail.com"><Mail size={15} /> Gmail</a><span className="mono">© 2026</span></div></footer>
     </div>
