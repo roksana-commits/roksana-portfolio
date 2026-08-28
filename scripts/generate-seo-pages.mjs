@@ -30,7 +30,7 @@ const pages = {
 const template = await readFile(join(outputDir, "index.html"), "utf8");
 
 for (const [route, meta] of Object.entries(pages)) {
-  const url = `${siteUrl}/${route}`;
+  const url = `${siteUrl}/${route}/`;
   let html = template;
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${meta.title}</title>`);
   html = html.replace(/<meta name="description" content="[^"]*"\s*\/>/i, `<meta name="description" content="${meta.description}" />`);
@@ -41,7 +41,6 @@ for (const [route, meta] of Object.entries(pages)) {
   html = html.replace(/(<meta property="og:url" content=")[^"]*("\s*\/>)/i, `$1${url}$2`);
   html = html.replace(/(<meta name="twitter:title" content=")[^"]*("\s*\/>)/i, `$1${meta.title}$2`);
   html = html.replace(/(<meta name="twitter:description" content=")[^"]*("\s*\/>)/i, `$1${meta.description}$2`);
-  html = html.replace(/"url": "[^"]*"/i, `"url": "${url}"`);
   await mkdir(join(outputDir, route), { recursive: true });
   await writeFile(join(outputDir, route, "index.html"), html, "utf8");
 }
