@@ -39,10 +39,17 @@ for (const [route, meta] of Object.entries(pages)) {
   html = html.replace(/(<meta property="og:title" content=")[^"]*("\s*\/>)/i, `$1${meta.title}$2`);
   html = html.replace(/(<meta property="og:description" content=")[^"]*("\s*\/>)/i, `$1${meta.description}$2`);
   html = html.replace(/(<meta property="og:url" content=")[^"]*("\s*\/>)/i, `$1${url}$2`);
-  html = html.replace(/(<meta name="twitter:title" content=")[^"]*("\s*\/>)/i, `$1${meta.title}$2`);
-  html = html.replace(/(<meta name="twitter:description" content=")[^"]*("\s*\/>)/i, `$1${meta.description}$2`);
+  html = html.replace(/(<meta name="twitter:title" content=")[^"]*("\s*\/>)?/i, `$1${meta.title}$2`);
+  html = html.replace(/(<meta name="twitter:description" content=")[^"]*("\s*\/>)?/i, `$1${meta.description}$2`);
   await mkdir(join(outputDir, route), { recursive: true });
   await writeFile(join(outputDir, route, "index.html"), html, "utf8");
 }
 
-console.log(`Generated ${Object.keys(pages).length} route-specific SEO HTML pages.`);
+const sitemapUrls = [
+  `${siteUrl}/`,
+  ...Object.keys(pages).map((route) => `${siteUrl}/${route}/`),
+];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}\n</urlset>\n`;
+await writeFile(join(outputDir, "sitemap.xml"), sitemap, "utf8");
+
+console.log(`Generated ${Object.keys(pages).length} route-specific SEO HTML pages and sitemap.`);
