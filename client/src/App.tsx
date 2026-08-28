@@ -20,14 +20,14 @@ const pageMeta: Record<string, { title: string; description: string; type?: stri
     title: "Roksana | Technical SEO, AI Search & Data Intelligence Specialist",
     description: "Roksana is a Technical SEO, AI Search Optimization, and Data Intelligence Specialist helping businesses improve search visibility, research competitors, and turn web data into useful decisions.",
   },
-  "/about": {
+  "/about/": {
     title: "About Roksana | Technical SEO & AI Search Specialist",
     description: "Learn about Roksana, a Technical SEO, AI Search Optimization, and Data Intelligence Specialist with 7+ years of experience in SEO, research, web data, and digital operations.",
   },
-  "/privacy": { title: "Privacy Policy | Roksana", description: "Privacy policy for the Roksana portfolio website.", type: "article" },
-  "/terms": { title: "Terms of Use | Roksana", description: "Terms of use for the Roksana portfolio website.", type: "article" },
-  "/cookies": { title: "Cookie Policy | Roksana", description: "Cookie information for the Roksana portfolio website.", type: "article" },
-  "/disclaimer": { title: "Disclaimer | Roksana", description: "Disclaimer for the Roksana portfolio website.", type: "article" },
+  "/privacy/": { title: "Privacy Policy | Roksana", description: "Privacy policy for the Roksana portfolio website.", type: "article" },
+  "/terms/": { title: "Terms of Use | Roksana", description: "Terms of use for the Roksana portfolio website.", type: "article" },
+  "/cookies/": { title: "Cookie Policy | Roksana", description: "Cookie information for the Roksana portfolio website.", type: "article" },
+  "/disclaimer/": { title: "Disclaimer | Roksana", description: "Disclaimer for the Roksana portfolio website.", type: "article" },
 };
 
 function setMeta(name: string, content: string) {
@@ -54,15 +54,16 @@ function SeoManager() {
   const [location] = useLocation();
   useEffect(() => {
     const path = location || "/";
-    const meta = pageMeta[path] ?? {
+    const normalizedPath = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}/`;
+    const meta = pageMeta[normalizedPath] ?? {
       title: "Page Not Found | Roksana",
       description: "The requested page could not be found on the Roksana portfolio website.",
       type: "website",
     };
-    const canonicalUrl = `${siteUrl}${path === "/" ? "/" : path}`;
+    const canonicalUrl = `${siteUrl}${normalizedPath}`;
     document.title = meta.title;
     setMeta("description", meta.description);
-    setMeta("robots", path === "/404" || !pageMeta[path] ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+    setMeta("robots", pageMeta[normalizedPath] ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" : "noindex, follow");
     let canonical = document.querySelector("link[rel=canonical]") as HTMLLinkElement | null;
     if (!canonical) {
       canonical = document.createElement("link");
@@ -87,10 +88,15 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/about/" component={About} />
       <Route path="/privacy"><Legal type="privacy" /></Route>
+      <Route path="/privacy/"><Legal type="privacy" /></Route>
       <Route path="/terms"><Legal type="terms" /></Route>
+      <Route path="/terms/"><Legal type="terms" /></Route>
       <Route path="/cookies"><Legal type="cookies" /></Route>
+      <Route path="/cookies/"><Legal type="cookies" /></Route>
       <Route path="/disclaimer"><Legal type="disclaimer" /></Route>
+      <Route path="/disclaimer/"><Legal type="disclaimer" /></Route>
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
