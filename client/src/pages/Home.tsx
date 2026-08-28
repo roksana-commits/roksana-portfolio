@@ -28,10 +28,10 @@ import { useEffect, useState, type FormEvent, type MouseEvent, type ReactNode } 
 import { Tooltip, TooltipContent, TooltipTrigger } from "../components/ui/tooltip";
 import { useTheme } from "../contexts/ThemeContext";
 
-const portrait = "/manus-storage/roksana-portrait_eea47550.png";
-const heroTexture = "/manus-storage/roksana-signal-hero_195fe05d.png";
-const detailTexture = "/manus-storage/roksana-data-detail_cb564b24.png";
-const mark = "/manus-storage/roksana-mark_b3bcbf5b.png";
+const portrait = "/assets/roksana-portrait_eea47550.png";
+const heroTexture = "/assets/roksana-signal-hero_195fe05d.png";
+const detailTexture = "/assets/roksana-data-detail_cb564b24.png";
+const mark = "/assets/roksana-mark_b3bcbf5b.png";
 const formspreeEndpoint = "https://formspree.io/f/meajdyya";
 const linkedinUrl = "https://www.linkedin.com/in/roksana-akhter-ripa";
 const lighthouseUrl = "https://lighthouseinternetmedia.com";
@@ -81,7 +81,6 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("top");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -97,23 +96,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   useEffect(() => {
-    if (!menuOpen) return;
-    const handleMenuEscape = (event: KeyboardEvent) => { if (event.key === "Escape") closeMenu(); };
-    window.addEventListener("keydown", handleMenuEscape);
-    return () => window.removeEventListener("keydown", handleMenuEscape);
-  }, [menuOpen]);
-  useEffect(() => {
-    const sectionIds = ["capabilities", "proof", "about", "contact"];
-    const sections = sectionIds.map((id) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
-    if (!sections.length) return;
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActiveSection(visible[0].target.id);
-    }, { rootMargin: "-20% 0px -62% 0px", threshold: [0.1, 0.25, 0.5, 0.75] });
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
     if (!successOpen) return;
     const handleEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setSuccessOpen(false); };
     window.addEventListener("keydown", handleEscape);
@@ -122,7 +104,6 @@ export default function Home() {
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault();
     closeMenu();
-    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const handleShare = async () => {
@@ -162,23 +143,23 @@ export default function Home() {
   };
 
   return (
-    <div className={`site-shell ${menuOpen ? "menu-is-open" : ""}`}>
+    <div className="site-shell">
+      <aside className="editorial-rail" aria-label="Portfolio index"><span>ROKSANA / 01—05</span><span>DATA INTELLIGENCE</span></aside>
       <header className="topbar">
         <a href="#top" className="brand" aria-label="Roksana home" onClick={(event) => handleNavClick(event, "top")}>
-          <span className={`brand-badge ${menuOpen ? "mobile-logo-active" : ""}`}><img src={mark} alt="" className="brand-mark" /></span>
+          <img src={mark} alt="" className="brand-mark" />
           <span>ROKSANA</span>
         </a>
         <button className="menu-button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
         <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">
-          <a className={activeSection === "capabilities" ? "is-active" : ""} aria-current={activeSection === "capabilities" ? "location" : undefined} href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
-          <a className={activeSection === "proof" ? "is-active" : ""} aria-current={activeSection === "proof" ? "location" : undefined} href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
-          <a className={activeSection === "about" ? "is-active" : ""} aria-current={activeSection === "about" ? "location" : undefined} href="/about">About</a>
+          <a href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>Capabilities</a>
+          <a href="#proof" onClick={(event) => handleNavClick(event, "proof")}>Proof</a>
+          <a href="/about">About</a>
           <span className="nav-socials" aria-label="Professional links"><SocialLink href={linkedinUrl} label="Roksana on LinkedIn"><Linkedin size={15} /></SocialLink><SocialLink href={lighthouseUrl} label="Lighthouse Internet Media website"><Globe2 size={15} /></SocialLink><SocialLink href={instagramUrl} label="Roksana on Instagram"><Instagram size={15} /></SocialLink><SocialLink href={facebookUrl} label="Roksana on Facebook"><Facebook size={15} /></SocialLink></span><button className="theme-toggle" type="button" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} onClick={() => toggleTheme?.()}><span className="theme-toggle-icon">{theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}</span><span>{theme === "dark" ? "Light" : "Dark"}</span></button>
-          <a className={`nav-cta ${activeSection === "contact" ? "is-active" : ""}`} aria-current={activeSection === "contact" ? "location" : undefined} href="#contact" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
+          <a href="#contact" className="nav-cta" onClick={(event) => handleNavClick(event, "contact")}>Let’s work <ArrowUpRight size={15} /></a>
         </nav>
-        {menuOpen && <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMenu} />}
       </header>
 
       <main id="top">
@@ -186,7 +167,7 @@ export default function Home() {
           <div className="hero-copy">
             <div className="eyebrow"><span className="eyebrow-dot" /> Available for focused projects <span className="mono">/ 2026</span></div>
             <h1>Clear answers<br /><em>from complicated</em><br />data.</h1>
-            <p className="hero-intro">I’m Roksana — a Digital Administrator at Lighthouse Internet Media with 9+ years of freelancing experience since 2018, working across technical SEO, data intelligence, and web scraping to turn scattered information into dependable next steps.</p>
+            <p className="hero-intro">I’m Roksana — a Digital Administrator at Lighthouse Internet Media, working across technical SEO, data intelligence, and web scraping to turn scattered information into dependable next steps.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">View my profile <ArrowUpRight size={17} /></a>
               <a className="text-link" href="#capabilities" onClick={(event) => handleNavClick(event, "capabilities")}>See how I help <ChevronDown size={16} /></a>
@@ -222,7 +203,7 @@ export default function Home() {
         <section className="signal-section" id="about">
           <div className="section-wrap signal-grid">
             <div className="signal-image"><img src={detailTexture} alt="Close-up abstract data ticks and connecting lines" /><span className="image-caption mono">A small detail<br />can change the answer.</span></div>
-            <div className="signal-copy"><SectionLabel number="03" children="Verified earnings" /><h2>Strong on detail.<br /><em>Good with the whole picture.</em></h2><p className="verified-earnings-note"><span className="verified-dot" /> Real, verified earnings figures from my Freelancer.com profile.</p><p>My work lives between research and execution. I’m comfortable finding the right source, shaping messy inputs, and delivering an output that someone else can actually use.</p><div className="skill-list">{skills.map((skill) => <div className="skill-item" key={skill.name}><div className="skill-top"><span>{skill.name}</span><span className="mono">{skill.value}</span></div><div className="skill-track"><span style={{ width: skill.width }} /></div></div>)}</div><a className="text-link" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Explore the full work history <ArrowUpRight size={16} /></a></div>
+            <div className="signal-copy"><SectionLabel number="03" children="The signal index" /><h2>Strong on detail.<br /><em>Good with the whole picture.</em></h2><p>My work lives between research and execution. I’m comfortable finding the right source, shaping messy inputs, and delivering an output that someone else can actually use.</p><div className="skill-list">{skills.map((skill) => <div className="skill-item" key={skill.name}><div className="skill-top"><span>{skill.name}</span><span className="mono">{skill.value}</span></div><div className="skill-track"><span style={{ width: skill.width }} /></div></div>)}</div><a className="text-link" href="https://www.freelancer.com/u/roksanaripa1993" target="_blank" rel="noreferrer">Explore the full work history <ArrowUpRight size={16} /></a></div>
           </div>
         </section>
 
